@@ -26,85 +26,82 @@
 <body>
     <nav th:insert="~{fragments/header-navbar :: header}"></nav>
 
-    <main class="pt-20">
-        <!--    Banner-->
-        <section class="relative w-full h-[439px] bg-cover bg-center" th:style="'background-image: url(' + @{/asset/hubungi-kami-banner.png} + ');'">
-            <div class="absolute inset-0" style="background: linear-gradient(90deg, rgba(52, 78, 65, 0.93) 32%, rgba(18, 27, 18, 0.00) 100%);"></div>
+    <main class="pt-16 md:pt-20">
+        <!-- Banner -->
+        <section class="relative w-full h-[439px] bg-cover bg-center"
+                 th:style="'background-image: url(' + @{/asset/hubungi-kami-banner.png} + ');'">
+            <div class="absolute inset-0 bg-gradient-to-r from-[#344E41]/[0.93] to-transparent"></div>
 
-            <div class="relative z-10 container mx-auto px-4 lg:px-20 flex flex-col justify-center h-full text-white">
+            <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-center h-full text-white">
                 <p class="text-sm font-semibold tracking-wider uppercase text-[#A3B18A]">
                     Beranda &gt; <span style="color: azure">Hubungi Kami</span>
                 </p>
                 <h1 class="mt-2 text-3xl md:text-4xl lg:text-5xl font-bold">
                     Informasi Kontak
                 </h1>
-                <p class="mt-4 text-base md:text-lg text-[#F3ECDC]">
+                <p class="mt-4 text-base md:text-lg text-[#F3ECDC] max-w-2xl">
                     Kami siap membantu Anda. Jangan ragu untuk menghubungi kami melalui kontak atau form di bawah ini.
                 </p>
             </div>
         </section>
 
-        <!--Form dan awan-->
-        <div class="bgPrimary container mx-auto px-6 lg:px-20 py-16 grid grid-cols-1 lg:grid-cols-3 gap-12">
-            <!-- Formulir Hubungi Kami -->
+        <!-- Form dan Informasi -->
+        <div class="bgPrimary max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 grid grid-cols-1 lg:grid-cols-3 gap-12">
+            <!-- Formulir -->
             <div class="lg:col-span-2">
                 <h2 class="text-[#2D2D2D] text-2xl font-semibold mb-6">HUBUNGI KAMI</h2>
-                <!-- Notification Messages -->
-
-
                 <form th:action="@{/hubungi-kami/insert}" th:object="${hubungiKamiForm}" method="POST" class="space-y-6" id="hubungiKamiForm">
-<!--                    <input type="hidden" name="csrfmiddlewaretoken" value="FOYCR7MsXBlVhJWHKF1nyG2QJuaKITywbNHDGCBC0K1AB0Zj1cXhVMxDfGTsLZfP">-->
                     <div>
                         <label for="nama" class="block text-sm font-semibold text-[#073937]">Nama *</label>
-                        <input th:field="*{nama}" type="text" id="nama" name="nama" class="w-full mt-2 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#A3B18A]" placeholder="Nama Lengkap Anda">
-                        <p id="usernameError" class="mt-2 text-sm text-red-600 hidden"> nama tidak boleh kosong</p>
+                        <input th:field="*{nama}" type="text" id="nama" name="nama"
+                               class="w-full mt-2 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#A3B18A]"
+                               placeholder="Nama Lengkap Anda">
+                        <p id="usernameError" class="mt-2 text-sm text-red-600 hidden">nama tidak boleh kosong</p>
                     </div>
 
                     <div>
                         <label for="email" class="block text-sm font-semibold text-[#073937]">Email *</label>
-                        <input th:field="*{email}" type="email" id="email" name="email" class="w-full mt-2 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#A3B18A]" placeholder="Alamat Email Anda">
-                        <p id="emailError" class="mt-2 text-sm text-red-600 hidden">Masukkan email yang benar contoh : lecimangga@email.com</p>
+                        <input th:field="*{email}" type="email" id="email" name="email"
+                               class="w-full mt-2 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#A3B18A]"
+                               placeholder="Alamat Email Anda">
+                        <p id="emailError" class="mt-2 text-sm text-red-600 hidden">Masukkan email yang benar contoh: lecimangga@email.com</p>
                     </div>
 
                     <div>
                         <label for="pesan" class="block text-sm font-semibold text-[#073937]">Pesan *</label>
-                        <textarea th:field="*{pesan}" id="pesan" name="pesan" rows="4" class="w-full mt-2 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#A3B18A]" placeholder="Tuliskan pesan Anda di sini"></textarea>
+                        <textarea th:field="*{pesan}" id="pesan" name="pesan" rows="4"
+                                  class="w-full mt-2 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#A3B18A]"
+                                  placeholder="Tuliskan pesan Anda di sini"></textarea>
                         <p id="pesanError" class="mt-2 text-sm text-red-600 hidden">pesan tidak boleh kosong</p>
                     </div>
 
-                    <p class="text-sm text-[#4D4D4D]">
-                        Kami akan merespons pesan Anda secepat mungkin. Terima kasih telah menghubungi kami!
-                    </p>
+                    <p class="text-sm text-[#4D4D4D]">Kami akan merespons pesan Anda secepat mungkin. Terima kasih telah menghubungi kami!</p>
 
-                    <button type="submit" class="w-full px-6 py-3 bg-[#588157] text-white font-semibold rounded-lg hover:bg-[#6A965F]">
+                    <button type="submit"
+                            class="w-full px-6 py-3 bg-[#588157] text-white font-semibold rounded-lg hover:bg-[#6A965F] transition-colors duration-200">
                         Kirim Pesan
                     </button>
                 </form>
             </div>
 
-            <!-- Informasi Kontak -->
+            <!-- Kontak -->
             <div class="bg-[#F9F9F9] p-6 rounded-lg space-y-6">
                 <div>
                     <h3 class="text-[#073937] font-semibold text-lg">Alamat</h3>
-                    <p class="text-[#4D4D4D] mt-2">
-                        Jl. Telekomunikasi No.1, Sukapura, Kabupaten Bandung, Jawa Barat 40267
-                    </p>
+                    <p class="text-[#4D4D4D] mt-2">Jl. Telekomunikasi No.1, Sukapura, Kabupaten Bandung, Jawa Barat 40267</p>
                 </div>
 
                 <div>
                     <h3 class="text-[#073937] font-semibold text-lg">WhatsApp</h3>
-                    <p class="text-[#4D4D4D] mt-2">
-                        Chat dengan kami langsung melalui WhatsApp
-                    </p>
+                    <p class="text-[#4D4D4D] mt-2">Chat dengan kami langsung melalui WhatsApp</p>
                     <ul class="text-[#4D4D4D] mt-2">
                         <li>Nico - <a href="https://wa.me/6281386447290" class="text-[#588157] font-semibold">+62 813-8644-7290</a></li>
                     </ul>
                 </div>
 
-
                 <div>
                     <h3 class="text-[#073937] font-semibold text-lg">Email</h3>
-                    <p class="text-[#4D4D4D] mt-2">Email kami di <a href="#" class="text-[#588157] font-semibold"> LeciMangga@Email.com</a></p>
+                    <p class="text-[#4D4D4D] mt-2">Email kami di <a href="mailto:LeciMangga@Email.com" class="text-[#588157] font-semibold">LeciMangga@Email.com</a></p>
                 </div>
 
                 <div class="text-center mt-6">
@@ -118,6 +115,7 @@
             </div>
         </div>
     </main>
+
 
     <footer th:insert="~{fragments/footer :: footer }"></footer>
     <script th:src="@{/js/hubungi-kami.js}"></script>
