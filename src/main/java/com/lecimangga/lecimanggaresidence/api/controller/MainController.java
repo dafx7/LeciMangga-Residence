@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MainController {
 
     @RequestMapping("/")
-    public String lokasi(HttpSession session) {
-        return "index";
+    public String register(HttpSession session) {
+        return "register";
     }
 }
 

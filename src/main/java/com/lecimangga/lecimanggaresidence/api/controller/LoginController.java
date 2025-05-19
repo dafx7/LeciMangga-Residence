@@ -1,6 +1,6 @@
 package com.lecimangga.lecimanggaresidence.api.controller;
 import com.lecimangga.lecimanggaresidence.api.model.User;
-import com.lecimangga.lecimanggaresidence.api.repository.UserRepository;
+import com.lecimangga.lecimanggaresidence.api.respository.UserRepository;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
