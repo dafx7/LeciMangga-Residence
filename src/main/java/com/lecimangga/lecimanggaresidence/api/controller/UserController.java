@@ -17,11 +17,6 @@ public class UserController {
     @Autowired
     UserRepository userRepository;
 
-    @GetMapping("/test")
-    public String test() {
-        return "testing";
-    }
-
     @GetMapping
     public List<User> getAll() {
         return userRepository.getUser();

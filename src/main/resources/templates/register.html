@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Sacramento&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link
+            rel="stylesheet"
+            type="text/css"
+            href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css"
+    />
+    <link
+            rel="stylesheet"
+            type="text/css"
+            href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css"
+    />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=arrow_back" />
+    <link rel="stylesheet" th:href="@{/style.css}" />
+</head>
+<body>
+<nav class="navbar fixed bgPrimary w-full z-30 h-auto lg:h-[15vh] xl:h-auto shadow-lg">
+    <div class="flex items-center px-4 py-3">
+        <div class="cursor-pointer" href="#">
+            <img class="h-[auto] w-[80%] md:w-[100%]" src="/asset/lecimangga copy4 1.png" alt="logo LeciMangga Residence">
+        </div>
+        <!-- Ikon Hamburger  -->
+        <div id="icon-Hamburger" class="hamburger font-semibold text-3xl ml-auto block cursor-pointer lg:hidden">
+            <i class="ph ph-list"></i>
+        </div>
+
+        <!-- Navbar Desktop -->
+        <div class="menu-Desktop flex items-center gap-8 teksSemiBold font-semibold ml-auto px-10 hidden lg:flex">
+            <a href="#" class="hover:text-green-600">Beranda</a>
+            <a href="#" class="hover:text-green-600">Tipe Kamar</a>
+            <a href="#" class="hover:text-green-600">Lokasi</a>
+            <a href="#" class="hover:text-green-600">FAQ</a>
+            <a href="#" class="hover:text-green-600">Hubungi Kami</a>
+            <div class="button flex justify-center" style="background-color: #588157">
+                <a th:href="@{/auth/login}">Masuk</a>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="menu-List" class="menu-Mobile flex flex-col px-5 pb-3 gap-5 teksSemiBold absolute w-full top-[80px] left-0 z-40 min-h-fit bgPrimary hidden lg:hidden">
+            <a href="#" class="hover:text-green-600">Beranda</a>
+            <a href="#" class="hover:text-green-600">Tipe Kamar</a>
+            <a href="#" class="hover:text-green-600">Lokasi</a>
+            <a href="#" class="hover:text-green-600">FAQ</a>
+            <a href="#" class="hover:text-green-600">Hubungi Kami</a>
+            <div class ="button flex justify-center" style="background-color: #588157">
+                <a th:href="@{/auth/login}">Masuk</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- FORM Register -->
+<section class="pt-20 bg-[#F3ECDC]">
+    <div class="grid grid-cols-1 lg:grid-cols-2 min-h-screen">
+        <div class="bg-[#F8F5EE] flex flex-col justify-center px-8 lg:px-16 py-12">
+            <a th:href="@{/auth/login}" class="flex items-center text-[#073937] mb-6">
+                  <span class="material-symbols-outlined">
+                    arrow_back
+                    </span>
+                <span class="ml-2">Daftar Akun Pengguna Kos</span>
+            </a>
+            <!-- Tampilkan pesan error jika ada -->
+            <div th:if="${error}" class="error-message" style="color:red;">
+                <p th:text="${error}"></p>
+            </div>
+
+            <form class="space-y-6" th:action="@{/auth/register}" method="post">
+                <div>
+                    <label class="block text-sm font-semibold text-[#073937]" for="username">Username:</label>
+                    <input class="w-full mt-2 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#A3B18A]" type="text" id="username" name="username" placeholder="Masukkan Username Baru" required/>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-[#073937]" for="password" >Password:</label>
+                    <input class="w-full mt-2 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#A3B18A]" type="password" id="password" name="password" placeholder="Masukkan Password Baru" required/>
+                </div>
+
+                <button class="w-full px-6 py-3 bg-[#588157] text-white font-semibold rounded-lg hover:bg-[#6A965F]" type="submit">Daftar</button>
+            </form>
+            <p class="mt-6 text-center text-[#073937]">Sudah punya akun? <a class="text-[#588157] font-semibold" th:href="@{/auth/login}">Login di sini</a></p>
+        </div>
+        <div class="hidden lg:flex bg-[#588157] text-white flex-col justify-center items-center px-12">
+            <h2 class="text-3xl font-bold text-center leading-[48px]">Mulai Langkah Pertama Untuk Mengelola Kos Anda Dengan Mudah</h2>
+            <p class="mt-4 text-center text-lg">Mulai Perjalanan Anda Untuk Menemukan Tempat Tinggal Yang Nyaman Bersama Kami.</p>
+        </div>
+    </div>
+</section>
+
+
+<!-- Footer -->
+<footer class="bg-[#344E41] text-[#F8F8D8] px-10 py-10 teksSemiBold">
+    <div class="flex flex-col items-start gap-10 bg-[#344E41] px-6 md:px-[50px] lg:px-[100px] py-[100px] pb-[30px]">
+        <div class="w-full grid grid-cols-1 md:grid-cols-3 gap-10">
+            <!-- logo dan deskripsi -->
+            <div class="flex flex-col gap-4 text-left md:text-left">
+                <div class="flex items-center justify-start md:justify-start gap-3 pb-2">
+                    <img src="/asset/logo footer.png" alt="logo lecimangga">
+                </div>
+                <div>
+                    <p class="font-opensans text-[16px] md:text-[18px] font-normal leading-[26px] md:leading-[29px]">Kos-Kosan Nyaman dengan Lokasi Strategis dan Fasilitas Lengkap untuk Hunian Ideal Anda</p>
+                </div>
+            </div>
+            <!-- Site Links -->
+            <div class="flex flex-col gap-4 text-left md:text-left">
+                <h3 class="font-lato text-[24px] font-semibold leading-none pb-2"> Site Links </h3>
+                <ul class="text-[rgba(255,255,255,0.75)] font-opensans text-[16px] md:text-[18px] font-normal leading-[26px] md:leading-[29px]">
+                    <li>
+                        <a class="hover:underline flex gap-3" href="#">
+                            <img src="/asset/arrow-right.png" alt="panah">
+                            Syarat dan ketentuan</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- Tetap bersama kami -->
+            <div class="flex flex-col gap-4 text-left md:text-left">
+                <h3 class="font-lato text-[24px] font-semibold leading-none">
+                    Tetap Bersama Kami
+                </h3>
+                <ul class="md:text-[18px] font-normal leading-[26px] md:leading-[29px] space-y-4 ">
+                    <li class="flex items-start gap-2">
+                        <div>
+                            <i class="ph ph-map-pin"></i>
+                        </div>
+                        <div>
+                      <span class="pl-1">
+                        Jl. Telekomunikasi No.1, Sukapura,
+                        <br>
+                        Kabupaten Bandung, Jawa Barat 40267
+                      </span>
+                        </div>
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <div>
+                            <i class="ph ph-envelope-simple"></i>
+                        </div>
+                        <div>
+                      <span class="pl-1">
+                        LeciMangga@Email.com
+                      </span>
+                        </div>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <div>
+                            <i class="ph ph-phone-call"></i>
+                        </div>
+                        <div>
+                            Nico:
+                            <a target="_blank" class="hover:underline text-white" href="https://wa.me/62123456789">( +62 ) 123 456 789</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+    <!-- Garis -->
+    <div class="w-full flex flex-col items-center border-t border-[rgba(255,255,255,0.30)] pt-[30px]">
+        <p class="text-[#F3ECDC] text-center text-sm uppercase font-semibold tracking-[2.25px]">
+            © 2025 LeciMangga Residence. Semua Hak Dilindungi
+        </p>
+    </div>
+</footer>
+<script src="/script.js"></script>
+</body>
+</html>
