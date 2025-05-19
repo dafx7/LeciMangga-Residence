@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Sacramento&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link
+          rel="stylesheet"
+          type="text/css"
+          href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css"
+  />
+  <link
+          rel="stylesheet"
+          type="text/css"
+          href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css"
+  />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<nav class="navbar fixed bgPrimary w-full z-30 h-auto lg:h-[15vh]">
+  <div class="flex items-center px-4 py-3">
+    <div class="cursor-pointer" href="#">
+      <img class="h-[auto] w-[80%] md:w-[100%]" src="/asset/lecimangga copy4 1.png" alt="logo LeciMangga Residence">
+    </div>
+    <!-- Ikon Hamburger  -->
+    <div id="icon-Hamburger" class="hamburger font-semibold text-3xl ml-auto block cursor-pointer lg:hidden">
+      <i class="ph ph-list"></i>
+    </div>
+
+    <!-- Navbar Desktop -->
+    <div class="menu-Desktop flex items-center gap-8 teksSemiBold ml-auto px-10 hidden lg:flex">
+      <a href="#" class="hover:text-green-600">Beranda</a>
+      <a href="#" class="hover:text-green-600">Tipe Kamar</a>
+      <a href="#" class="hover:text-green-600">Lokasi</a>
+      <a href="#" class="hover:text-green-600">FAQ</a>
+      <a href="#" class="hover:text-green-600">Hubungi Kami</a>
+      <div class="button flex justify-center">
+        <p>Masuk</p>
+      </div>
+    </div>
+    <!-- Mobile Menu -->
+    <div id="menu-List" class="menu-Mobile flex flex-col px-5 pb-3 gap-5 teksSemiBold absolute w-full top-[80px] left-0 z-40 min-h-fit bgPrimary hidden lg:hidden">
+      <a href="#" class="hover:text-green-600">Beranda</a>
+      <a href="#" class="hover:text-green-600">Tipe Kamar</a>
+      <a href="#" class="hover:text-green-600">Lokasi</a>
+      <a href="#" class="hover:text-green-600">FAQ</a>
+      <a href="#" class="hover:text-green-600">Hubungi Kami</a>
+      <div class="button flex justify-center w-full">
+        <p>Masuk</p>
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+<!-- end -->
+
+<!-- BANNER -->
+<div class="banner relative h-[500px] bg-[url('/asset/banner.png')] bg-cover bg-center flex flex-col justify-center text-white px-10 pt-20 teksSemiBold">
+  <div class="absolute inset-0" style="background: linear-gradient(90deg, rgba(52, 78, 65, 0.88) 30%, rgba(18, 27, 18, 0.00) 100%);"></div>
+  <div class="textBanner lg:ml-[8rem] md:ml-[1rem] z-20">
+    <p class="text-sm mb-2 mb-5" style="color: #A3B18A;">BERANDA > <span style="color: white;">LOKASI</span></p>
+    <h1 class="lg:text-5xl md:text-3xl text-xl font-bold my-5">Lokasi LeciMangga Residence</h1>
+    <p class="mt-5 lg:text-base text-sm">Temukan lokasi strategis dengan akses mudah ke berbagai tempat penting</p>
+  </div>
+</div>
+
+<!-- LOKASI -->
+<section class="bgPrimary p-5 flex teksSemiBold w-full flex-col items-center">
+  <div class="lokasi pt-8">
+    <h1 class="md:text-3xl text-2xl w-auto text-[#073937]">LOKASI DAN LINGKUNGAN SEKITAR</h1>
+    <div class="alamat flex text-sm gap-1 pt-2">
+      <i class="ph ph-map-pin text-sm" style="color: #588157;" ></i>
+      <p class="md:text-sm text-xs" style="color: #588157;">BANDUNG SELATAN, KABUPATEN ABC, BANDUNG</p>
+    </div>
+
+    <div class="peta pt-10 text-center">
+      <div class="py-7 px-10 bg-white rounded-[20px]">
+        <iframe class="h-[400px] w-full" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.338936629578!2d107.62557670990294!3d-6.969281993002255!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e9bc3974981d%3A0x613eec0feec9fcf7!2sTelkom%20University%20Landmark%20Tower%20(TULT)!5e0!3m2!1sid!2sid!4v1745994344128!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <a href="https://www.google.com/maps/place/Telkom+University+Landmark+Tower+(TULT)/@-6.969282,107.628157,16z/data=!4m6!3m5!1s0x2e68e9bc3974981d:0x613eec0feec9fcf7!8m2!3d-6.969282!4d107.628157!16s%2Fg%2F11fnh7dtf9?hl=id&entry=ttu&g_ep=EgoyMDI1MDQyOS4wIKXMDSoJLDEwMjExNDUzSAFQAw%3D%3D" target="_blank">
+          <button class="w-full my-4 max-w-[280px] py-[12px] rounded-[30px] bg-white shadow-md text-md cursor-pointer hover:shadow-lg" style="color: #588157;" >
+            Lihat di Goggle Maps
+          </button>
+        </a>
+        <p class="text-[#073937] text-3xl my-6"> TEMPAT TERDEKAT </p>
+        <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 justify-items-center teksSemiBold">
+          <div class="py-5 px-[50px] rounded-[20px] flex-col items-center text-center shadow-md bg-[#F3F3F3]">
+            <i class="ph ph-map-pin text-2xl" style="color: #588157;" ></i>
+            <h1 class="text-[#073937]">Kampus Telkom</h1>
+            <p class="font-normal">1,5 KM</p>
+          </div>
+          <div class="py-5 px-[50px] rounded-[20px] flex-col items-center text-center shadow-md bg-[#F3F3F3]">
+            <i class="ph ph-map-pin text-2xl" style="color: #588157;" ></i>
+            <h1 class="text-[#073937]">Transmart Mall</h1>
+            <p class="font-normal">5 KM</p>
+          </div>
+          <div class="py-5 px-[50px] rounded-[20px] flex-col items-center text-center shadow-md bg-[#F3F3F3]">
+            <i class="ph ph-map-pin text-2xl" style="color: #588157;" ></i>
+            <h1 class="text-[#073937]">Yogya Market</h1>
+            <p class="font-normal">3 KM</p>
+          </div>
+          <div class="py-5 px-[50px] rounded-[20px] flex-col items-center text-center shadow-md bg-[#F3F3F3]">
+            <i class="ph ph-map-pin text-2xl" style="color: #588157;" ></i>
+            <h1 class="text-[#073937]">Borma Market</h1>
+            <p class="font-normal">12,5 KM</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-[#344E41] text-[#F8F8D8] px-10 py-10 teksSemiBold">
+  <div class="flex flex-col items-start gap-10 bg-[#344E41] px-6 md:px-[50px] lg:px-[100px] py-[100px] pb-[30px]">
+    <div class="w-full grid grid-cols-1 md:grid-cols-3 gap-10">
+      <!-- logo dan deskripsi -->
+      <div class="flex flex-col gap-4 text-left md:text-left">
+        <div class="flex items-center justify-start md:justify-start gap-3 pb-2">
+          <img src="/asset/logo_footer.png" alt="logo lecimangga">
+        </div>
+        <div>
+          <p class="font-opensans text-[16px] md:text-[18px] font-normal leading-[26px] md:leading-[29px]">Kos-Kosan Nyaman dengan Lokasi Strategis dan Fasilitas Lengkap untuk Hunian Ideal Anda</p>
+        </div>
+      </div>
+      <!-- Site Links -->
+      <div class="flex flex-col gap-4 text-left md:text-left">
+        <h3 class="font-lato text-[24px] font-semibold leading-none pb-2"> Site Links </h3>
+        <ul class="text-[rgba(255,255,255,0.75)] font-opensans text-[16px] md:text-[18px] font-normal leading-[26px] md:leading-[29px]">
+          <li>
+            <a class="hover:underline flex gap-3" href="#">
+              <img src="/asset/arrow-right.png" alt="panah">
+              Syarat dan ketentuan</a>
+          </li>
+        </ul>
+      </div>
+      <!-- Tetap bersama kami -->
+      <div class="flex flex-col gap-4 text-left md:text-left">
+        <h3 class="font-lato text-[24px] font-semibold leading-none">
+          Tetap Bersama Kami
+        </h3>
+        <ul class="md:text-[18px] font-normal leading-[26px] md:leading-[29px] space-y-4 ">
+          <li class="flex items-start gap-2">
+            <div>
+              <i class="ph ph-map-pin"></i>
+            </div>
+            <div>
+                  <span class="pl-1">
+                    Jl. Telekomunikasi No.1, Sukapura,
+                    <br>
+                    Kabupaten Bandung, Jawa Barat 40267
+                  </span>
+            </div>
+          </li>
+          <li class="flex items-center gap-2">
+            <div>
+              <i class="ph ph-envelope-simple"></i>
+            </div>
+            <div>
+                  <span class="pl-1">
+                    LeciMangga@Email.com
+                  </span>
+            </div>
+          </li>
+          <li class="flex items-start gap-3">
+            <div>
+              <i class="ph ph-phone-call"></i>
+            </div>
+            <div>
+              Nico:
+              <a target="_blank" class="hover:underline text-white" href="https://wa.me/62123456789">( +62 ) 123 456 789</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+  <!-- Garis -->
+  <div class="w-full flex flex-col items-center border-t border-[rgba(255,255,255,0.30)] pt-[30px]">
+    <p class="text-[#F3ECDC] text-center text-sm uppercase font-semibold tracking-[2.25px]">
+      © 2025 LeciMangga Residence. Semua Hak Dilindungi
+    </p>
+  </div>
+</footer>
+<script src="/js/script.js"></script>
+</body>
+</html>

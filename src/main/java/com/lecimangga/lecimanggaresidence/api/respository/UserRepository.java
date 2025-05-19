@@ -1,4 +1,4 @@
-package com.lecimangga.lecimanggaresidence.api.repository;
+package com.lecimangga.lecimanggaresidence.api.respository;
 
 import com.lecimangga.lecimanggaresidence.api.model.User;
 import com.lecimangga.lecimanggaresidence.api.model.UserRowMapper;
@@ -50,22 +50,26 @@ public class UserRepository {
             @Override
             public Boolean doInPreparedStatement(PreparedStatement ps)
                     throws SQLException, DataAccessException {
+
                 ps.setString(1, user.getUsername());
                 ps.setString(2, user.getPassword());
+
                 int affectedRows = ps.executeUpdate();
                 return affectedRows > 0;
             }
         });
     }
 
-    public Integer updateUser(User user){
+    public Integer updateUser(User user) {
         String query = "update user set username=?, password=? where id=?";
         Object[] params = {user.getUsername(), user.getPassword(), user.getId()};
         int[] types = {Types.VARCHAR, Types.VARCHAR, Types.INTEGER};
+
         return jdbcTemplate.update(query, params, types);
     }
 
-    public Integer deleteUserById(Integer id){
+
+    public Integer deleteUserById(Integer id) {
         int update = jdbcTemplate.update("delete from user where id=?", id);
         return update;
     }
