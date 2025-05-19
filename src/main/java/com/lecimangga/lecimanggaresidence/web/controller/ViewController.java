@@ -22,4 +22,8 @@ public class ViewController {
         return "index";
     }
 
+    @GetMapping("/lokasi")
+    public String showLokasi() {
+        return "lokasi";
+    }
 }

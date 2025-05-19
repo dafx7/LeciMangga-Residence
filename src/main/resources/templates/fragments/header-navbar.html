@@ -8,7 +8,7 @@
     <link rel="stylesheet" th:href="@{/style.css}">
 </head>
 <body>
-    <nav th:fragment="header" class="navbar fixed bgPrimary w-full z-30 h-auto lg:h-[13vh]">
+    <nav th:fragment="header" class="navbar fixed bgPrimary w-full z-30 h-auto lg:h-[15vh] xl:h-auto">
         <div class="flex items-center px-4 py-3">
             <div class="cursor-pointer" href="#">
                 <img class="h-[auto] w-[80%] md:w-[100%]" src="/asset/lecimangga copy4 1.png" alt="logo LeciMangga Residence">
@@ -22,7 +22,7 @@
             <div class="menu-Desktop flex items-center gap-8 teksSemiBold ml-auto px-10 hidden lg:flex">
                 <a th:href="@{/}" class="hover:text-green-600">Beranda</a>
                 <a href="#" class="hover:text-green-600">Tipe Kamar</a>
-                <a href="#" class="hover:text-green-600">Lokasi</a>
+                <a th:href="@{/lokasi}" class="hover:text-green-600">Lokasi</a>
                 <a href="#" class="hover:text-green-600">FAQ</a>
                 <a th:href="@{/hubungi-kami}" class="hover:text-green-600">Hubungi Kami</a>
                 <div class="flex w-24 px-1 py-2 justify-center items-center gap-1 rounded bg-[#588157] text-white" th:if="${session.user == null}" style="background-color: var(--warna-secondary)">
@@ -36,7 +36,7 @@
             <div id="menu-List" class="menu-Mobile flex flex-col px-5 pb-3 gap-5 teksSemiBold absolute w-full top-[80px] left-0 z-40 min-h-fit bgPrimary hidden lg:hidden">
                 <a href="#" class="hover:text-green-600">Beranda</a>
                 <a href="#" class="hover:text-green-600">Tipe Kamar</a>
-                <a href="#" class="hover:text-green-600">Lokasi</a>
+                <a th:href="@{/lokasi}" class="hover:text-green-600">Lokasi</a>
                 <a href="#" class="hover:text-green-600">FAQ</a>
                 <a href="#" class="hover:text-green-600">Hubungi Kami</a>
                 <div class="block px-4 py-2 bg-[#588157] text-white rounded-lg text-center shadow-md hover:bg-[#6A965F]" th:if="${session.user == null}" style="background-color: var(--warna-secondary)">
