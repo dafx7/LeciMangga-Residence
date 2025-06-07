@@ -42,14 +42,14 @@
             <form class="space-y-6" th:action="@{/auth/register}" method="post">
                 <div>
                     <label class="block text-sm font-semibold text-[#073937]" for="username">Username:</label>
-                    <input class="w-full mt-2 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#A3B18A]" type="text" id="username" name="username" placeholder="Masukkan Username Baru" required/>
+                    <input class="w-full mt-2 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#A3B18A]"
+                           type="text" id="username" name="username" placeholder="Masukkan Username Baru" required />
                 </div>
-
                 <div>
-                    <label class="block text-sm font-semibold text-[#073937]" for="password" >Password:</label>
-                    <input class="w-full mt-2 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#A3B18A]" type="password" id="password" name="password" placeholder="Masukkan Password Baru" required/>
+                    <label class="block text-sm font-semibold text-[#073937]" for="password">Password:</label>
+                    <input class="w-full mt-2 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#A3B18A]"
+                           type="password" id="password" name="password" placeholder="Masukkan Password Baru" required minlength="8" />
                 </div>
-
                 <button class="w-full px-6 py-3 bg-[#588157] text-white font-semibold rounded-lg hover:bg-[#6A965F]" type="submit">Daftar</button>
             </form>
             <p class="mt-6 text-center text-[#073937]">Sudah punya akun? <a class="text-[#588157] font-semibold" th:href="@{/auth/login}">Login di sini</a></p>
@@ -64,6 +64,6 @@
 
 <!-- Footer -->
 <footer th:insert="~{fragments/footer :: footer}"/>
-<script src="/script.js"></script>
+<script th:src="@{/js/script.js}"></script>
 </body>
 </html>

@@ -22,19 +22,24 @@ public class RegisterController {
     @PostMapping("/register")
     public String registerUser(@RequestParam String username,
                                @RequestParam String password,
-                               Model model){
+                               Model model) {
+        User existingUser = userRepository.findByUsername(username);
+        if (existingUser != null) {
+            model.addAttribute("error", "Username sudah digunakan.");
+            return "register";
+        }
+
         User user = new User();
         user.setUsername(username);
         user.setPassword(password);
+        user.setRole("customer");
 
         Boolean isSaved = userRepository.saveUser(user);
         if (isSaved) {
-            return "redirect:/auth/login";
+            return "redirect:/auth/login";  //
         } else {
             model.addAttribute("error", "Gagal mendaftar user.");
             return "register";
         }
     }
-
-
 }

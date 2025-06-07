@@ -31,6 +31,9 @@
                 <div class="flex w-24 px-1 py-2 justify-center items-center gap-1 rounded bg-[#588157] text-white" th:if="${session.user != null}" style="background-color:maroon ">
                     <a th:href="@{/auth/logout}">Keluar</a>
                 </div>
+                <div th:if="${session.user != null and session.user.role == 'admin'}" class="flex w-24 px-1 py-2 justify-center items-center gap-1 rounded bg-[#588157] text-white">
+                    <a th:href="@{/dashboard}">Dashboard</a>
+                </div>
             </div>
             <!-- Mobile Menu -->
             <div id="menu-List" class="menu-Mobile flex flex-col px-5 pb-3 gap-5 teksSemiBold absolute w-full top-[80px] left-0 z-40 min-h-fit bgPrimary hidden lg:hidden">
@@ -44,6 +47,9 @@
                 </div>
                 <div class="block px-4 py-2 bg-[#588157] text-white rounded-lg text-center shadow-md hover:bg-[#6A965F]" th:if="${session.user != null}" style="background-color:maroon ">
                     <a th:href="@{/auth/logout}">Keluar</a>
+                </div>
+                <div th:if="${session.user != null and session.user.role == 'admin'}" class="block px-4 py-2 bg-[#588157] text-white rounded-lg text-center shadow-md hover:bg-[#6A965F]">
+                    <a th:href="@{/dashboard}">Dashboard</a>
                 </div>
             </div>
 
