@@ -8,6 +8,7 @@ public class User implements Serializable {
     int id;
     String username;
     String password;
+    String role;
 
     public int getId() {
         return id;
@@ -32,4 +33,9 @@ public class User implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public String getRole() {return role;}
+
+    public void setRole(String role) {this.role = role;}
+
 }
