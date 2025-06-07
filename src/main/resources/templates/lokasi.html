@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"
-xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -19,69 +18,70 @@ xmlns:th="http://www.thymeleaf.org">
           type="text/css"
           href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css"
   />
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
   <link rel="stylesheet" th:href="@{/style.css}" />
 </head>
 <body>
-<!--insert-->
-  <nav th:insert="~{/fragments/header-navbar :: header}"></nav>
+<nav th:insert="~{fragments/header-navbar :: header}"></nav>
 
-  <!-- BANNER -->
-  <div class="banner relative h-[500px] bg-[url('/asset/banner.png')] bg-cover bg-center flex flex-col justify-center text-white px-10 pt-20 teksSemiBold">
-    <div class="absolute inset-0" style="background: linear-gradient(90deg, rgba(52, 78, 65, 0.88) 30%, rgba(18, 27, 18, 0.00) 100%);"></div>
-    <div class="textBanner lg:ml-[8rem] md:ml-[1rem] z-20">
-      <p class="text-sm mb-2 mb-5" style="color: #A3B18A;">BERANDA > <span style="color: white;">LOKASI</span></p>
-      <h1 class="lg:text-5xl md:text-3xl text-xl font-bold my-5">Lokasi LeciMangga Residence</h1>
-      <p class="mt-5 lg:text-base text-sm">Temukan lokasi strategis dengan akses mudah ke berbagai tempat penting</p>
-    </div>
+<!-- end -->
+
+<!-- BANNER -->
+<div class="banner relative h-[500px] bg-[url('/asset/banner.png')] bg-cover bg-center flex flex-col justify-center text-white px-10 pt-20 teksSemiBold">
+  <div class="absolute inset-0" style="background: linear-gradient(90deg, rgba(52, 78, 65, 0.88) 30%, rgba(18, 27, 18, 0.00) 100%);"></div>
+  <div class="textBanner lg:ml-[8rem] md:ml-[1rem] z-20">
+    <p class="text-sm mb-2 mb-5" style="color: #A3B18A;">BERANDA > <span style="color: white;">LOKASI</span></p>
+    <h1 class="lg:text-5xl md:text-3xl text-xl font-bold my-5">Lokasi LeciMangga Residence</h1>
+    <p class="mt-5 lg:text-base text-sm">Temukan lokasi strategis dengan akses mudah ke berbagai tempat penting</p>
   </div>
+</div>
 
-  <!-- LOKASI -->
-  <section class="bgPrimary p-5 flex teksSemiBold w-full flex-col items-center">
-    <div class="lokasi pt-8">
-      <h1 class="md:text-3xl text-2xl w-auto text-[#073937]">LOKASI DAN LINGKUNGAN SEKITAR</h1>
-      <div class="alamat flex text-sm gap-1 pt-2">
-        <i class="ph ph-map-pin text-sm" style="color: #588157;" ></i>
-        <p class="md:text-sm text-xs" style="color: #588157;">BANDUNG SELATAN, KABUPATEN ABC, BANDUNG</p>
-      </div>
+<!-- LOKASI -->
+<section class="bgPrimary p-5 flex teksSemiBold w-full flex-col items-center">
+  <div class="lokasi pt-8">
+    <h1 class="md:text-3xl text-2xl w-auto text-[#073937]">LOKASI DAN LINGKUNGAN SEKITAR</h1>
+    <div class="alamat flex text-sm gap-1 pt-2">
+      <i class="ph ph-map-pin text-sm" style="color: #588157;" ></i>
+      <p class="md:text-sm text-xs" style="color: #588157;">BANDUNG SELATAN, KABUPATEN ABC, BANDUNG</p>
+    </div>
 
-      <div class="peta pt-10 text-center">
-        <div class="py-7 px-10 bg-white rounded-[20px]">
-          <iframe class="h-[400px] w-full" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.338936629578!2d107.62557670990294!3d-6.969281993002255!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e9bc3974981d%3A0x613eec0feec9fcf7!2sTelkom%20University%20Landmark%20Tower%20(TULT)!5e0!3m2!1sid!2sid!4v1745994344128!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-          <a href="https://www.google.com/maps/place/Telkom+University+Landmark+Tower+(TULT)/@-6.969282,107.628157,16z/data=!4m6!3m5!1s0x2e68e9bc3974981d:0x613eec0feec9fcf7!8m2!3d-6.969282!4d107.628157!16s%2Fg%2F11fnh7dtf9?hl=id&entry=ttu&g_ep=EgoyMDI1MDQyOS4wIKXMDSoJLDEwMjExNDUzSAFQAw%3D%3D" target="_blank">
-            <button class="w-full my-4 max-w-[280px] py-[12px] rounded-[30px] bg-white shadow-md text-md cursor-pointer hover:shadow-lg" style="color: #588157;" >
-              Lihat di Goggle Maps
-            </button>
-          </a>
-          <p class="text-[#073937] text-3xl my-6"> TEMPAT TERDEKAT </p>
-          <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 justify-items-center teksSemiBold">
-            <div class="py-5 px-[50px] rounded-[20px] flex-col items-center text-center shadow-md bg-[#F3F3F3]">
-              <i class="ph ph-map-pin text-2xl" style="color: #588157;" ></i>
-              <h1 class="text-[#073937]">Kampus Telkom</h1>
-              <p class="font-normal">1,5 KM</p>
-            </div>
-            <div class="py-5 px-[50px] rounded-[20px] flex-col items-center text-center shadow-md bg-[#F3F3F3]">
-              <i class="ph ph-map-pin text-2xl" style="color: #588157;" ></i>
-              <h1 class="text-[#073937]">Transmart Mall</h1>
-              <p class="font-normal">5 KM</p>
-            </div>
-            <div class="py-5 px-[50px] rounded-[20px] flex-col items-center text-center shadow-md bg-[#F3F3F3]">
-              <i class="ph ph-map-pin text-2xl" style="color: #588157;" ></i>
-              <h1 class="text-[#073937]">Yogya Market</h1>
-              <p class="font-normal">3 KM</p>
-            </div>
-            <div class="py-5 px-[50px] rounded-[20px] flex-col items-center text-center shadow-md bg-[#F3F3F3]">
-              <i class="ph ph-map-pin text-2xl" style="color: #588157;" ></i>
-              <h1 class="text-[#073937]">Borma Market</h1>
-              <p class="font-normal">12,5 KM</p>
-            </div>
+    <div class="peta pt-10 text-center">
+      <div class="py-7 px-10 bg-white rounded-[20px]">
+        <iframe class="h-[400px] w-full" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.338936629578!2d107.62557670990294!3d-6.969281993002255!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e9bc3974981d%3A0x613eec0feec9fcf7!2sTelkom%20University%20Landmark%20Tower%20(TULT)!5e0!3m2!1sid!2sid!4v1745994344128!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <a href="https://www.google.com/maps/place/Telkom+University+Landmark+Tower+(TULT)/@-6.969282,107.628157,16z/data=!4m6!3m5!1s0x2e68e9bc3974981d:0x613eec0feec9fcf7!8m2!3d-6.969282!4d107.628157!16s%2Fg%2F11fnh7dtf9?hl=id&entry=ttu&g_ep=EgoyMDI1MDQyOS4wIKXMDSoJLDEwMjExNDUzSAFQAw%3D%3D" target="_blank">
+          <button class="w-full my-4 max-w-[280px] py-[12px] rounded-[30px] bg-white shadow-md text-md cursor-pointer hover:shadow-lg" style="color: #588157;" >
+            Lihat di Goggle Maps
+          </button>
+        </a>
+        <p class="text-[#073937] text-3xl my-6"> TEMPAT TERDEKAT </p>
+        <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 justify-items-center teksSemiBold">
+          <div class="py-5 px-[50px] rounded-[20px] flex-col items-center text-center shadow-md bg-[#F3F3F3]">
+            <i class="ph ph-map-pin text-2xl" style="color: #588157;" ></i>
+            <h1 class="text-[#073937]">Kampus Telkom</h1>
+            <p class="font-normal">1,5 KM</p>
+          </div>
+          <div class="py-5 px-[50px] rounded-[20px] flex-col items-center text-center shadow-md bg-[#F3F3F3]">
+            <i class="ph ph-map-pin text-2xl" style="color: #588157;" ></i>
+            <h1 class="text-[#073937]">Transmart Mall</h1>
+            <p class="font-normal">5 KM</p>
+          </div>
+          <div class="py-5 px-[50px] rounded-[20px] flex-col items-center text-center shadow-md bg-[#F3F3F3]">
+            <i class="ph ph-map-pin text-2xl" style="color: #588157;" ></i>
+            <h1 class="text-[#073937]">Yogya Market</h1>
+            <p class="font-normal">3 KM</p>
+          </div>
+          <div class="py-5 px-[50px] rounded-[20px] flex-col items-center text-center shadow-md bg-[#F3F3F3]">
+            <i class="ph ph-map-pin text-2xl" style="color: #588157;" ></i>
+            <h1 class="text-[#073937]">Borma Market</h1>
+            <p class="font-normal">12,5 KM</p>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Footer -->
-  <footer th:replace="~{fragments/footer :: footer}"></footer>
+<!-- Footer -->
+<footer th:insert="~{fragments/footer :: footer}"/>
+<script src="/js/script.js"></script>
 </body>
 </html>

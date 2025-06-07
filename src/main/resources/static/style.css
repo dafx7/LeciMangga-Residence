@@ -40,7 +40,6 @@ html {
 }
 
 .button{
-    background-color: var(--warna-secondary);
     width: 96px;
     height: 38px;
     border-radius: 4px;
