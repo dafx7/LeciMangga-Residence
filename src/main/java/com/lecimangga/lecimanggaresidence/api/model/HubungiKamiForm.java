@@ -1,8 +1,10 @@
 package com.lecimangga.lecimanggaresidence.api.model;
 
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
 public class HubungiKamiForm {
@@ -11,6 +13,7 @@ public class HubungiKamiForm {
     private int id;
     private String nama;
     private String email;
+    @Column(columnDefinition = "TEXT")
     private String pesan;
 
     public int getId() {

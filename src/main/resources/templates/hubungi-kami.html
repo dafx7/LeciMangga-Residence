@@ -4,6 +4,7 @@
 >
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -51,6 +52,7 @@
             <div class="lg:col-span-2">
                 <h2 class="text-[#2D2D2D] text-2xl font-semibold mb-6">HUBUNGI KAMI</h2>
                 <form th:action="@{/hubungi-kami/insert}" th:object="${hubungiKamiForm}" method="POST" class="space-y-6" id="hubungiKamiForm">
+                    <input th:value="${csrfToken}" type="hidden" id="csrfToken" name="csrfToken">
                     <div>
                         <label for="nama" class="block text-sm font-semibold text-[#073937]">Nama *</label>
                         <input th:field="*{nama}" type="text" id="nama" name="nama"
@@ -115,6 +117,25 @@
             </div>
         </div>
     </main>
+
+    <!-- Popup Window -->
+    <div th:if="${message != null}" id="popup" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        <div th:if="${message}" class="bg-white rounded-lg shadow-lg p-6 w-96">
+            <h2 class="text-xl font-semibold mb-4">Terima Kasih</h2>
+            <p class="mb-4">Pesan anda sudah kami terima</p>
+            <button onclick="document.getElementById('popup').classList.add('hidden')" class="bg-red-500 text-white px-4 py-2 rounded">
+                Close
+            </button>
+        </div>
+
+        <div th:unless="${message}" class="bg-white rounded-lg shadow-lg p-6 w-96">
+            <h2 class="text-xl font-semibold mb-4">Error</h2>
+            <p class="mb-4">Refresh dan kirim ulang pesan anda</p>
+            <button onclick="document.getElementById('popup').classList.add('hidden')" class="bg-red-500 text-white px-4 py-2 rounded">
+                Close
+            </button>
+        </div>
+    </div>
 
 
     <footer th:insert="~{fragments/footer :: footer }"></footer>
