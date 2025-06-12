@@ -1,6 +1,5 @@
 package com.lecimangga.lecimanggaresidence.api.model;
 
-import java.sql.Array;
 import java.util.List;
 
 public class Kamar {
@@ -11,6 +10,11 @@ public class Kamar {
     private String fasilitas;
     private List<Double> Harga;
     private int maxOrang;
+    private boolean token;
+
+    public void setToken(boolean token) {this.token = token;}
+
+    public boolean getToken() {return token;}
 
     public String getJenisKamar() {
         return jenisKamar;

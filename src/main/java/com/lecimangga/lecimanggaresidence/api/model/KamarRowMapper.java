@@ -18,6 +18,7 @@ public class KamarRowMapper implements RowMapper<Kamar> {
         kamar.setDesc(rs.getString("desc"));
         kamar.setMaxOrang(rs.getInt("maxOrang"));
         kamar.setFasilitas(rs.getString("fasilitas"));
+        kamar.setToken(rs.getBoolean("token"));
         String hargaString = rs.getString("Harga");
         if (hargaString != null && !hargaString.isEmpty()) {
             // Split by comma and convert to a List of Doubles
