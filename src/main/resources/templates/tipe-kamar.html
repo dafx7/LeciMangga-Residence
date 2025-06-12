@@ -205,14 +205,16 @@
                             Harga
                         </h4>
                         <div class="flex flex-col lg:flex-row lg:justify-between lg:items-center gap-2 pt-4 lg:pt-6 border-t border-[#EDE8DA]">
-                            <div th:each="harga, iterStat : ${kamar.harga}">
-                                <p class="text-[#073937] font-opensans text-sm lg:text-[16px] font-normal leading-[27.9px]">
-                                    <span th:text="${iterStat.count} +' Orang  Mulai Rp.'+${harga}">
-                                        Harga Kamar
-                                    </span>
-                                </p>
+                            <div class="flex flex-col gap-1">
+                                <div th:each="harga, iterStat : ${kamar.harga}" >
+                                    <p class="text-[#073937] font-opensans text-sm lg:text-[16px] font-normal leading-[27.9px]">
+                                        <span th:text="${iterStat.count} +' Orang  Mulai Rp.'+${harga}">
+                                            Harga Kamar
+                                        </span>
+                                    </p>
+                                </div>
                             </div>
-                            <a th:href="@{/pesan-sekarang/{id}(id=${kamar.jenisKamar})}" class="bg-[#588157] text-white px-8 py-2 rounded-full text-sm font-semibold hover:bg-[#6A965F]">
+                            <a th:href="@{/pesan-sekarang(jenis=${kamar.jenisKamar})}" class="bg-[#588157] text-white px-8 py-4 rounded-full text-sm font-semibold hover:bg-[#6A965F]">
                                 Pesan Sekarang
                             </a>
                         </div>

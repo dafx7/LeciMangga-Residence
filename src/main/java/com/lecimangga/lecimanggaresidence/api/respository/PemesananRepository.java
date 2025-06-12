@@ -14,7 +14,7 @@ public class PemesananRepository {
     JdbcTemplate jdbcTemplate;
 
     public void insertFormPemesanan(Pemesanan pemesanan) {
-        jdbcTemplate.update("INSERT INTO pemesanan_form (nama, noTelp,jenis,tipeDurasi,jumlahDurasi,tanggalMulaiSewa,jumlahPenghuni) values (?,?,?,?,?,?,?)",
+        jdbcTemplate.update("INSERT INTO pemesanan_form (nama, no_telp,jenis,tipe_durasi,jumlah_durasi,tanggal_mulai_sewa,jumlah_penghuni) values (?,?,?,?,?,?,?)",
             pemesanan.getNama(),
             pemesanan.getNoTelp(),
             pemesanan.getJenis(),
