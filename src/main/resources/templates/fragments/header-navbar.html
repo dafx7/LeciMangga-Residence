@@ -31,6 +31,9 @@
                 <div class="flex w-24 px-1 py-2 justify-center items-center gap-1 rounded bg-[#588157] text-white" th:if="${session.user != null}" style="background-color:maroon ">
                     <a th:href="@{/auth/logout}">Keluar</a>
                 </div>
+                <a class="px-4 py-2 rounded-lg bg-[#A3B18A] text-white font-semibold text-sm shadow-md hover:bg-[#8B9E78] transition-all duration-300 flex items-center gap-2">
+                    <i class="fas fa-tachometer-alt"></i> Dashboard
+                </a>
                 <div th:if="${session.user != null and session.user.role == 'admin'}" class="flex w-24 px-1 py-2 justify-center items-center gap-1 rounded bg-[#588157] text-white">
                     <a th:href="@{/dashboard}">Dashboard</a>
                 </div>
@@ -40,8 +43,7 @@
                 <a th:href="@{/}" class="hover:text-green-600">Beranda</a>
                 <a th:href="@{/tipe-kamar}" class="hover:text-green-600">Tipe Kamar</a>
                 <a th:href="@{/lokasi}" class="hover:text-green-600">Lokasi</a>
-                <a th:href="@{/}" class="hover:text-green-600">FAQ</a>
-                <a th:href="@{/hubungi-kami}" class="hover:text-green-600">Hubungi Kami</a>
+                <a href="#" class="hover:text-green-600">FAQ</a> <a th:href="@{/hubungi-kami}" class="hover:text-green-600">Hubungi Kami</a>
                 <div class="block px-4 py-2 bg-[#588157] text-white rounded-lg text-center shadow-md hover:bg-[#6A965F]" th:if="${session.user == null}" style="background-color: var(--warna-secondary)">
                     <a th:href="@{/auth/login}">Masuk</a>
                 </div>

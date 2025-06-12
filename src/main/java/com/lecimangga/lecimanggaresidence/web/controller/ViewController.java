@@ -27,7 +27,7 @@ public class ViewController {
     @Autowired
     CsrfRepository csrfRepository;
 
-//    url/hubungi-kami
+//  url/hubungi-kami
     @GetMapping("/hubungi-kami")
     public String showHubungiKami(Model model, HttpSession session ) {
         String csrfToken = (String) session.getAttribute("_csrf");
@@ -102,4 +102,7 @@ public class ViewController {
         model.addAttribute("listKamar",listKamar);
         return "pesan-sekarang";
     }
+
+    @GetMapping("/dashboard-penghuni")
+    public String showDashboard() {return "dashboard-penghuni";}
 }
