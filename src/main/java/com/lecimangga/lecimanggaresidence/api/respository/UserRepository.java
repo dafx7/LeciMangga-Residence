@@ -21,7 +21,7 @@ public class UserRepository {
     JdbcTemplate jdbcTemplate;
 
     public List<User> getUser() {
-        return jdbcTemplate.query("select id,username,password from user", new UserRowMapper());
+        return jdbcTemplate.query("select id,username,password,role from user", new UserRowMapper());
     }
 
 
@@ -50,10 +50,8 @@ public class UserRepository {
             @Override
             public Boolean doInPreparedStatement(PreparedStatement ps)
                     throws SQLException, DataAccessException {
-
                 ps.setString(1, user.getUsername());
                 ps.setString(2, user.getPassword());
-
                 int affectedRows = ps.executeUpdate();
                 return affectedRows > 0;
             }

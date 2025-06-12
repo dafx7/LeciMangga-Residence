@@ -6,6 +6,9 @@
     <title>Page</title>
 </head>
 <body>
-<h1>error Page</h1>
+    <h1>error Page</h1>
+    <div th:if="${error != null}" class="error-message" style="color:red;">
+        <p th:text="${error}"></p>
+    </div>
 </body>
 </html>
