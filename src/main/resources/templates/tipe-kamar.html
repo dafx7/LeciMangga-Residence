@@ -171,15 +171,58 @@
             </div>
         </div>
 
-        <section class="container mx-auto px-4 lg:px-20 mt-8 mb-12"> <div id="kamarListContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <p id="noResultsMessage" class="text-center text-gray-500 hidden col-span-full py-10">
-                Tidak ada kamar yang ditemukan dengan filter ini.
-            </p>
+        <div th:each="kamar : ${listKamar}" class="container mx-auto px-6 lg:px-20">
+                <div class="mb-12 flex flex-col lg:flex-row w-full max-w-[1230px] mx-auto p-6 items-center gap-8 bg-white rounded-[20px] shadow-md">
+                    <div class="container mx-auto px-6 lg:px-20">
+                        <div class="relative w-full lg:w-[511px] h-[416px] lg:h-[416px] rounded-lg overflow-hidden cursor-pointer">
+                            <img th:src="${kamar.imagePath}" th:alt="${kamar.jenisKamar}" class="w-full h-full object-cover">
+                            <span th:text="${kamar.status ? 'Tersedia' : 'Penuh'}" th:classappend="${kamar.status ? 'bg-[#588157]' : 'bg-red-500'}" class="absolute top-1 left-1 text-white font-work-sans font-semibold text-base py-2 px-4 rounded-[10px] shadow-md">
+                                Status
+                            </span>
+                        </div>
+
+                    </div>
+                    <div class="flex flex-col gap-4 w-full">
+                        <h3 class="text-[#073937] font-opensans text-lg lg:text-[24px] font-semibold uppercase leading-[27.9px]">
+                            <span th:text="${kamar.jenisKamar}">
+                                Jenis Kamar
+                            </span>
+                        </h3>
+                        <p class="text-[#073937] font-opensans text-sm lg:text-[16px] font-normal leading-[27.9px]">
+                            <span th:text="${kamar.desc}">
+                                Desc Kamar
+                            </span>
+                        </p>
+                        <h4 class="text-[#073937] font-opensans text-sm lg:text-[16px] font-semibold">
+                            Fasilitas Kamar
+                        </h4>
+                        <p class="text-[#073937] font-opensans text-sm lg:text-[16px] font-normal leading-[27.9px]">
+                            <span th:text="${kamar.fasilitas}">
+                                Fasilitas Kamar
+                            </span>
+                        </p>
+                        <h4 class="text-[#073937] font-opensans text-sm lg:text-[16px] font-semibold">
+                            Harga
+                        </h4>
+                        <div class="flex flex-col lg:flex-row lg:justify-between lg:items-center gap-2 pt-4 lg:pt-6 border-t border-[#EDE8DA]">
+                            <div th:each="harga, iterStat : ${kamar.harga}">
+                                <p class="text-[#073937] font-opensans text-sm lg:text-[16px] font-normal leading-[27.9px]">
+                                    <span th:text="${iterStat.count} +' Orang  Mulai Rp.'+${harga}">
+                                        Harga Kamar
+                                    </span>
+                                </p>
+                            </div>
+                            <a th:href="@{/pesan-sekarang/{id}(id=${kamar.jenisKamar})}" class="bg-[#588157] text-white px-8 py-2 rounded-full text-sm font-semibold hover:bg-[#6A965F]">
+                                Pesan Sekarang
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        </section>
 
 
         <footer th:insert="~{fragments/footer :: footer }"></footer>
-        <script th:src="@{/js/tipe-kamar.js}"></script>
+    </main>
 </body>
 </html>

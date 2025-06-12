@@ -1,15 +1,20 @@
 package com.lecimangga.lecimanggaresidence.web.controller;
 
+import com.lecimangga.lecimanggaresidence.api.controller.KamarController;
 import com.lecimangga.lecimanggaresidence.api.model.Csrf;
 import com.lecimangga.lecimanggaresidence.api.model.HubungiKamiForm;
+import com.lecimangga.lecimanggaresidence.api.model.Kamar;
 import com.lecimangga.lecimanggaresidence.api.respository.CsrfRepository;
+import com.lecimangga.lecimanggaresidence.api.respository.KamarRepository;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 /**
  * Controller untuk menangani permintaan halaman web (views).
@@ -55,5 +60,31 @@ public class ViewController {
     @GetMapping("/lokasi")
     public String showLokasi() {
         return "lokasi";
+    }
+
+    @Autowired
+    KamarRepository kamarRepository;
+
+    @GetMapping("/tipe-kamar")
+    public String getFilteredKamar(
+            @RequestParam(name = "harga",required = false) String harga,
+            @RequestParam(name = "token",required = false) String token,
+            @RequestParam(name = "orang", required = false) String orang,
+            Model model
+    ){
+        List<Kamar> listKamar;
+        if (harga == null && token == null && orang == null) {
+            listKamar = kamarRepository.getKamar();
+        } else {
+            listKamar = kamarRepository.getFilteredKamar(harga, token, orang);
+        }
+        model.addAttribute("listKamar", listKamar);
+        return "tipe-kamar";
+    }
+
+    @GetMapping("/pesan-sekarang/{jenis}")
+    public String getPesanSekarang(String jenis, Model model) {
+        model.addAttribute("jenis", jenis);
+        return "pesan-sekarang";
     }
 }
