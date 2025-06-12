@@ -56,4 +56,7 @@ public class ViewController {
     public String showLokasi() {
         return "lokasi";
     }
+
+    @GetMapping("/dashboard-penghuni")
+    public String showDashboard() {return "dashboard-penghuni";}
 }
