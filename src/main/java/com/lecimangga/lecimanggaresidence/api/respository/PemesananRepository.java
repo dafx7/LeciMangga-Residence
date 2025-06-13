@@ -13,17 +13,18 @@ public class PemesananRepository {
     @Autowired
     JdbcTemplate jdbcTemplate;
 
-//    public void insertFormPemesanan(Pemesanan pemesanan) {
-//        jdbcTemplate.update("INSERT INTO pemesanan_form (nama, no_telp,jenis,tipe_durasi,jumlah_durasi,tanggal_mulai_sewa,jumlah_penghuni) values (?,?,?,?,?,?,?)",
-//            pemesanan.getNama(),
-//            pemesanan.getNoTelp(),
-//            pemesanan.getJenis(),
-//            pemesanan.getTipeDurasi(),
-//            pemesanan.getJumlahDurasi(),
-//            pemesanan.getTanggalMulaiSewa(),
-//            pemesanan.getJumlahPenghuni()
-//        );
-//    }
+    public void insertFormPemesanan(Pemesanan pemesanan) {
+        jdbcTemplate.update("INSERT INTO pemesanan (nama_pemesan, kontak,tipe_kamar,durasi,tipe_sewa,jumlah_penghuni,tanggal_mulai, status) values (?,?,?,?,?,?,?,?)",
+            pemesanan.getNamaPemesan(),
+            pemesanan.getKontak(),
+            pemesanan.getTipeKamar(),
+            pemesanan.getDurasi(),
+            pemesanan.getTipeSewa(),
+            pemesanan.getJumlahPenghuni(),
+            pemesanan.getTanggalMulai(),
+            pemesanan.getStatus()
+        );
+    }
 
     public List<Pemesanan> findAll() {
         String sql = "SELECT * FROM pemesanan ORDER BY status = 'menunggu' DESC, tanggal_mulai ASC";

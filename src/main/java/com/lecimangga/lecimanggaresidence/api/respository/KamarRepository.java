@@ -35,20 +35,23 @@ public class KamarRepository {
     }
 
     public List<Kamar> getFilteredKamar(String harga, String token, String orang) {
-        String sql = "select * from kamar where 1=1";
+        String sql = "select * from kamar where 1=1 ";
         if (Objects.equals(harga, "1")){
-            sql += "and Harga >= "+0+" and harga <= " + 1000000;
+            sql += "AND ((JSON_EXTRACT(Harga, '$[0]') >= 0 AND JSON_EXTRACT(Harga, '$[0]') <= 1000000) OR (JSON_EXTRACT(Harga, '$[1]') >= 0 AND JSON_EXTRACT(Harga, '$[1]') <= 1000000)) ";
         } else if (Objects.equals(harga, "2")){
-            sql += "and Harga >= "+1000000+" and harga <= " + 2000000;
+            sql += "AND ((JSON_EXTRACT(Harga, '$[0]') >= 1000000 AND JSON_EXTRACT(Harga, '$[0]') <= 2000000) OR (JSON_EXTRACT(Harga, '$[1]') >= 1000000 AND JSON_EXTRACT(Harga, '$[1]') <= 2000000)) ";
         } else if (Objects.equals(harga, "3")){
-            sql += "and Harga >= "+2000000;
+            sql += "AND (JSON_EXTRACT(Harga, '$[0]') >= 2000000 OR JSON_EXTRACT(Harga, '$[1]') >= 2000000)";
         }
         if (Objects.equals(token, "token")){
-            sql += "and token = 1";
+            sql += "and token_listrik = 1 ";
+        } else if(Objects.equals(token, "non-token")) {
+            sql += "and token_listrik = 0 ";
         }
-        if (orang != null){
-            sql += "and maxOrang = " + orang;
+        if (orang != null && !orang.isEmpty()){
+            sql += "and max_orang = " + orang;
         }
+        System.out.println(sql);
         return jdbcTemplate.query(sql, new KamarRowMapper());
     }
 

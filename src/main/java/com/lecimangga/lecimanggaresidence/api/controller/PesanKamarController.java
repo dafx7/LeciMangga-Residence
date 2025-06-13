@@ -21,15 +21,15 @@ public class PesanKamarController {
     @Autowired
     private KamarRepository kamarRepository;
 
-//    @PostMapping("/submit")
-//    public String insertPemesananKamar(@ModelAttribute Pemesanan form){
-//        try{
-//            pemesananRepository.insertFormPemesanan(form);
-//            System.out.println(form);
-//        } catch (Exception e) {
-//            System.out.println(e.getMessage());
-//        }
-//        System.out.println("tes");
-//        return "redirect:/tipe-kamar";
-//    }
+    @PostMapping("/submit")
+    public String insertPemesananKamar(@ModelAttribute Pemesanan form){
+        try{
+            form.setStatus("menunggu");
+            pemesananRepository.insertFormPemesanan(form);
+            System.out.println(form);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return "redirect:/tipe-kamar";
+    }
 }
