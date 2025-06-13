@@ -48,15 +48,15 @@
             <form class="space-y-6" th:action="@{/pesan-kamar/submit}" method="POST" th:object="${form}">
                 <div>
                     <label for="nama" class="block text-sm font-semibold text-[#073937]">Nama</label>
-                    <input th:field="*{nama}" type="text" id="nama" name="nama" class="w-full mt-2 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#A3B18A]" placeholder="Masukkan nama lengkap" required>
+                    <input th:field="*{namaPemesan}" type="text" id="nama" name="nama" class="w-full mt-2 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#A3B18A]" placeholder="Masukkan nama lengkap" required>
                 </div>
                 <div>
                     <label for="kontak" class="block text-sm font-semibold text-[#073937]">Nomor Telp / Email</label>
-                    <input th:field="*{noTelp}" type="text" id="kontak" name="kontak" class="w-full mt-2 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#A3B18A]" placeholder="Masukkan Nomor Telp/Email" required>
+                    <input th:field="*{kontak}" type="text" id="kontak" name="kontak" class="w-full mt-2 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#A3B18A]" placeholder="Masukkan Nomor Telp/Email" required>
                 </div>
                 <div>
                     <label for="tipe_kamar" class="block text-sm font-semibold text-[#073937]">Pilih Tipe Kamar</label>
-                    <select th:field="*{jenis}"
+                    <select th:field="*{tipeKamar}"
                             id="tipe_kamar"
                             onchange="window.location.href='?jenis=' + this.value"
                             name="tipe_kamar"
@@ -71,11 +71,11 @@
                 <div class="flex gap-4">
                     <div class="w-3/4">
                         <label for="durasi" id="durasiLabel" class="block text-sm font-semibold text-[#073937]">Durasi (Bulan)</label>
-                        <input th:field="*{jumlahDurasi}" type="number" id="durasi" name="durasi" class="w-full mt-2 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#A3B18A]" min="1" required>
+                        <input th:field="*{durasi}" type="number" id="durasi" name="durasi" class="w-full mt-2 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#A3B18A]" min="1" required>
                     </div>
                     <div class="w-1/4">
                         <label for="tipe_sewa" class="block text-sm font-semibold text-[#073937]">Tipe Sewa</label>
-                        <select th:field="*{tipeDurasi}" id="tipe_sewa" name="tipe_sewa" class="w-full mt-2 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#A3B18A]" required>
+                        <select th:field="*{tipeSewa}" id="tipe_sewa" name="tipe_sewa" class="w-full mt-2 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#A3B18A]" required>
                             <option th:value="bulanan">Bulanan</option>
                             <option th:value="tahunan">Tahunan</option>
                         </select>
@@ -96,14 +96,21 @@
                 </div>
                 <div>
                     <label for="tanggal_mulai" class="block text-sm font-semibold text-[#073937]">Tanggal Mulai Sewa</label>
-                    <input th:field="*{tanggalMulaiSewa}" type="date" id="tanggal_mulai" name="tanggal_mulai" class="w-full mt-2 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#A3B18A]" required>
+                    <input th:field="*{tanggalMulai}" type="date" id="tanggal_mulai" name="tanggal_mulai" class="w-full mt-2 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#A3B18A]" required>
                 </div>
                 <div class="flex justify-between mt-6">
 
                     <button type="submit"
+                            th:if="${user}"
                             class="px-6 py-3 bg-[#588157] text-white font-semibold rounded-lg hover:bg-blue-600">
                         Kirim
                     </button>
+
+                    <a th:unless="${user}"
+                            th:href="@{/auth/login}"
+                            class="px-6 py-3 bg-[#568157] text-white font-semibold rounded-lg hover:bg-blue-600">
+                        Login
+                    </a>
 
 
                     <button type="reset" class="px-6 py-3 border border-[#588157] text-[#588157] font-semibold rounded-lg hover:bg-[#EDE8DA]">

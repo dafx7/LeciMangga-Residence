@@ -1,10 +1,7 @@
 package com.lecimangga.lecimanggaresidence.web.controller;
 
 import com.lecimangga.lecimanggaresidence.api.controller.KamarController;
-import com.lecimangga.lecimanggaresidence.api.model.Csrf;
-import com.lecimangga.lecimanggaresidence.api.model.HubungiKamiForm;
-import com.lecimangga.lecimanggaresidence.api.model.Kamar;
-import com.lecimangga.lecimanggaresidence.api.model.Pemesanan;
+import com.lecimangga.lecimanggaresidence.api.model.*;
 import com.lecimangga.lecimanggaresidence.api.respository.CsrfRepository;
 import com.lecimangga.lecimanggaresidence.api.respository.KamarRepository;
 import jakarta.servlet.http.HttpSession;
@@ -55,7 +52,9 @@ public class ViewController {
 
 
     @GetMapping("/")
-    public String showIndex() {
+    public String showIndex(Model model, HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        model.addAttribute("user", user != null ? user.getUsername() : "");
         return "index";
     }
 
@@ -84,24 +83,25 @@ public class ViewController {
         return "tipe-kamar";
     }
 
-//    @GetMapping("/pesan-sekarang")
-//    public String getPesanSekarang(@RequestParam(required = false) String jenis, Model model) {
-//        Pemesanan pemesanan = new Pemesanan();
-//        pemesanan.setJenis(jenis);
-//        model.addAttribute("form", pemesanan);
-//        model.addAttribute("jenis", jenis);
-//        List<Kamar> listKamar = kamarRepository.getKamar();
-//        int maxPenghuni = 1;
-//        for (Kamar kamar : listKamar) {
-//            if (kamar.getJenisKamar().equals(jenis)) {
-//                maxPenghuni = kamar.getMaxOrang();
-//                break;
-//            }
-//        }
-//        model.addAttribute("maxPenghuni", maxPenghuni);
-//        model.addAttribute("listKamar",listKamar);
-//        return "pesan-sekarang";
-//    }
+    @GetMapping("/pesan-sekarang")
+    public String getPesanSekarang(@RequestParam(required = false) String jenis,HttpSession session , Model model) {
+        Pemesanan pemesanan = new Pemesanan();
+        pemesanan.setTipeKamar(jenis);
+        model.addAttribute("form", pemesanan);
+        model.addAttribute("jenis", jenis);
+        List<Kamar> listKamar = kamarRepository.getKamar();
+        int maxPenghuni = 1;
+        for (Kamar kamar : listKamar) {
+            if (kamar.getJenisKamar().equals(jenis)) {
+                maxPenghuni = kamar.getMaxOrang();
+                break;
+            }
+        }
+        model.addAttribute("user",session.getAttribute("user") != null);
+        model.addAttribute("maxPenghuni", maxPenghuni);
+        model.addAttribute("listKamar",listKamar);
+        return "pesan-sekarang";
+    }
 
     @GetMapping("/admin-dashboard")
     public String showDashboard() {return "dashboard-admin";}

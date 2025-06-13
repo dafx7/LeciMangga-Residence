@@ -6,7 +6,7 @@ xmlns:th="http://www.thymeleaf.org"
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hero Section - Barat Residence</title>
+    <title>Hero Section - Leci Mangga Residence</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600&display=swap" rel="stylesheet">
@@ -64,7 +64,7 @@ xmlns:th="http://www.thymeleaf.org"
     <section class="pt-24 bg-[#F3ECDC]">
         <!-- Background Image -->
         <div class="relative w-full h-[400px] md:h-[500px] lg:h-[600px] bg-cover bg-center"
-             style="background-image: url('images/Tampak depan .jpg');">
+             style="background-image: url('asset/index-banner.webp');">
             <!-- Overlay -->
             <div class="absolute inset-0"
                  style="background: linear-gradient(90deg, rgba(52, 78, 65, 0.93) 32%, rgba(18, 27, 18, 0.00) 100%);">
@@ -74,27 +74,28 @@ xmlns:th="http://www.thymeleaf.org"
             <div
                     class="absolute inset-0 flex flex-col justify-center px-6 md:px-10 lg:px-20 space-y-4 text-center lg:text-left">
                 <p class="text-sm md:text-base lg:text-lg text-white font-semibold tracking-[2.25px] uppercase">
-                    Tempatnya sewa kos-kosan terbaik Di Medan
+                    Tempatnya sewa kos-kosan terbaik Di Bojongsoang
                 </p>
-                <h1 class="text-2xl md:text-4xl lg:text-5xl text-white font-semibold">
-                    Selamat Datang di
+                <h1 class="text-2xl md:text-4xl lg:text-5xl text-white font-semibold"
+                    th:text="'Selamat Datang ' + ${user} + ' di '"
+                >
                 </h1>
                 <h2 class="text-3xl md:text-5xl lg:text-[55px] text-[#A3B18A] font-semibold">
-                    Barat Residence
+                    Leci Mangga Residence
                 </h2>
                 <p class="text-sm md:text-lg lg:text-xl text-white">
-                    Tempat Tinggal Nyaman Dan Strategis Di Dekat Kampus USU
+                    Tempat Tinggal Nyaman Dan Strategis Di Dekat Telkom University
                 </p>
                 <div
                         class="flex flex-col lg:flex-row lg:space-x-4 space-y-4 lg:space-y-0 justify-center lg:justify-start">
                     <!-- Tombol Lihat Kamar -->
-                    <a href="#"
+                    <a th:href="@{/tipe-kamar}"
                        class="flex items-center justify-center px-6 md:px-10 py-4 md:py-5 rounded-[30px] bg-[#588157] text-[#F3ECDC] text-sm md:text-base font-semibold uppercase tracking-[2.25px] hover:bg-[#6A965F] hover:cursor-pointer transition">
                         Lihat Kamar
                     </a>
 
                     <!-- Tombol Pesan Sekarang -->
-                    <a href="#"
+                    <a th:href="@{/pesan-sekarang?jenis=}"
                        class="flex items-center justify-center px-6 md:px-10 py-4 md:py-5 rounded-[30px] bg-[#F3ECDC] text-[#588157] text-sm md:text-base font-semibold uppercase tracking-[2.25px] hover:bg-[#E5D9C7] hover:cursor-pointer transition">
                         Pesan Sekarang
                     </a>
@@ -113,7 +114,7 @@ xmlns:th="http://www.thymeleaf.org"
                 <!-- Judul -->
                 <h2 class="text-[#2D2D2D] font-semibold text-[18px] sm:text-[20px] md:text-[24px] lg:text-[28px] xl:text-[32px] uppercase leading-relaxed max-w-full lg:max-w-[579px] mb-6"
                     style="font-family: 'Open Sans', sans-serif;">
-                    Beragam Fasilitas Lengkap untuk Mendukung Kenyamanan dan Kebutuhan Anda di Barat Residence
+                    Beragam Fasilitas Lengkap untuk Mendukung Kenyamanan dan Kebutuhan Anda di Leci Mangga Residence
                 </h2>
 
                 <!-- Daftar Fasilitas -->
@@ -162,13 +163,13 @@ xmlns:th="http://www.thymeleaf.org"
                 <div class="flex transition-transform duration-500"
                      :style="`transform: translateX(-${activeSlide * 100}%);`">
                     <div class="w-full flex-shrink-0">
-                        <img src="images/Lobby.jpg" alt="Fasilitas 1" class="object-cover w-full h-full">
+                        <img src="asset/fasilitas-1.jpeg" alt="Fasilitas 1" class="object-cover w-full h-full">
                     </div>
                     <div class="w-full flex-shrink-0">
-                        <img src="images/Parkiran mobil.jpg" alt="Fasilitas 2" class="object-cover w-full h-full">
+                        <img src="assets/fasilitas-2.jpeg" alt="Fasilitas 2" class="object-cover w-full h-full">
                     </div>
                     <div class="w-full flex-shrink-0">
-                        <img src="images/Tampak depan .jpg" alt="Fasilitas 3" class="object-cover w-full h-full">
+                        <img src="assets/fasilitas-3.jpeg" alt="Fasilitas 3" class="object-cover w-full h-full">
                     </div>
                 </div>
 
@@ -201,7 +202,7 @@ xmlns:th="http://www.thymeleaf.org"
                 Keunggulan Yang Kami Berikan
             </h3>
             <h2 class="text-[#2D2D2D] text-2xl md:text-3xl font-bold">
-                Keunggulan Barat Residence
+                Keunggulan Leci Mangga Residence
             </h2>
         </div>
         <div class="flex flex-wrap justify-center gap-5">
@@ -209,7 +210,7 @@ xmlns:th="http://www.thymeleaf.org"
             <div
                     class="flex flex-col items-center w-full md:w-[393px] p-6 md:py-24 md:px-7 rounded-[30px] border-[10px] border-[#F3ECDC] bg-[#344E41] shadow-lg">
                 <div class="w-[100px] h-[100px] md:w-[140px] md:h-[140px] rounded-full border-[8px] md:border-[10px] border-[#F3ECDC] bg-cover bg-center mb-5 shadow-lg"
-                     style="background-image: url('images/location.jpg');">
+                     style="background-image: url('asset/lokasi-strategis.jpg');">
                 </div>
                 <h3 class="text-[#F3ECDC] text-lg md:text-xl font-semibold mb-4">
                     Lokasi Strategis
@@ -222,7 +223,7 @@ xmlns:th="http://www.thymeleaf.org"
             <div
                     class="flex flex-col items-center w-full md:w-[393px] p-6 md:py-24 md:px-7 rounded-[30px] border-[10px] border-[#F3ECDC] bg-[#344E41] shadow-lg">
                 <div class="w-[100px] h-[100px] md:w-[140px] md:h-[140px] rounded-full border-[8px] md:border-[10px] border-[#F3ECDC] bg-cover bg-center mb-5 shadow-lg"
-                     style="background-image: url('images/money.png');">
+                     style="background-image: url('asset/harga-terjangkau.png');">
                 </div>
                 <h3 class="text-[#F3ECDC] text-lg md:text-xl font-semibold mb-4">
                     Harga Terjangkau
@@ -235,7 +236,7 @@ xmlns:th="http://www.thymeleaf.org"
             <div
                     class="flex flex-col items-center w-full md:w-[393px] p-6 md:py-24 md:px-7 rounded-[30px] border-[10px] border-[#F3ECDC] bg-[#344E41] shadow-lg">
                 <div class="w-[100px] h-[100px] md:w-[140px] md:h-[140px] rounded-full border-[8px] md:border-[10px] border-[#F3ECDC] bg-cover bg-center mb-5 shadow-lg"
-                     style="background-image: url('images/facility-icon.png');">
+                     style="background-image: url('asset/fasilitas-lengkap.jpeg');">
                 </div>
                 <h3 class="text-[#F3ECDC] text-lg md:text-xl font-semibold mb-4">
                     Fasilitas Lengkap
@@ -251,20 +252,20 @@ xmlns:th="http://www.thymeleaf.org"
             {
                 name: 'Patrick Kluivert',
                 role: 'Mahasiswa ABCD',
-                text: '“ Tinggal di Barat Residence benar-benar pengalaman yang luar biasa. Lokasinya sangat strategis, memudahkan saya untuk beraktivitas sehari-hari. Fasilitasnya lengkap dan semuanya dalam kondisi baik. Selain itu, suasananya sangat nyaman dan tenang, cocok untuk saya yang membutuhkan tempat istirahat yang berkualitas. Harga yang ditawarkan juga sangat terjangkau dibandingkan dengan tempat lain. Saya merasa seperti di rumah sendiri! “',
-                image: 'images/testimony-1.png'
+                text: '“ Tinggal di Leci Mangga Residence benar-benar pengalaman yang luar biasa. Lokasinya sangat strategis, memudahkan saya untuk beraktivitas sehari-hari. Fasilitasnya lengkap dan semuanya dalam kondisi baik. Selain itu, suasananya sangat nyaman dan tenang, cocok untuk saya yang membutuhkan tempat istirahat yang berkualitas. Harga yang ditawarkan juga sangat terjangkau dibandingkan dengan tempat lain. Saya merasa seperti di rumah sendiri! “',
+                image: 'asset/penghuni-1.jpeg'
             },
             {
                 name: 'Sarah Doe',
                 role: 'Karyawan XYZ',
                 text: '“ Kos ini sangat nyaman dan bersih. Fasilitasnya sangat lengkap, mulai dari dapur umum hingga Wi-Fi yang stabil. Saya juga suka lokasinya yang dekat dengan kantor saya, jadi sangat menghemat waktu perjalanan. Highly recommended! “',
-                image: 'images/testimony-2.png'
+                image: 'asset/penghuni-1.jpeg'
             },
             {
                 name: 'John Smith',
                 role: 'Mahasiswa DEF',
-                text: '“ Suasana yang tenang dan lingkungan yang bersih membuat saya merasa betah di Barat Residence. Stafnya juga sangat ramah dan responsif terhadap kebutuhan penghuni. Jika mencari tempat tinggal strategis dan nyaman, ini pilihan yang tepat! “',
-                image: 'images/testimony-3.png'
+                text: '“ Suasana yang tenang dan lingkungan yang bersih membuat saya merasa betah di Leci Mangga Residence. Stafnya juga sangat ramah dan responsif terhadap kebutuhan penghuni. Jika mencari tempat tinggal strategis dan nyaman, ini pilihan yang tepat! “',
+                image: 'asset/penghuni-1.jpeg'
             }
         ] }">
         <div class="container mx-auto px-6 lg:px-20 flex flex-col gap-10">
@@ -274,7 +275,7 @@ xmlns:th="http://www.thymeleaf.org"
                     Fasilitas Umum
                 </h3>
                 <h2 class="text-[#F3ECDC] text-2xl md:text-3xl lg:text-4xl font-semibold uppercase mt-2">
-                    Testimoni Penghuni Kos-Kosan Barat Residence
+                    Testimoni Penghuni Kos-Kosan Leci Mangga Residence
                 </h2>
             </div>
 
@@ -321,20 +322,20 @@ xmlns:th="http://www.thymeleaf.org"
     <section class="py-16 bg-[#F3ECDC]">
         <div class="container mx-auto px-4 sm:px-6 lg:px-20">
             <div class="relative flex items-center justify-center h-[300px] sm:h-[350px] md:h-[400px] rounded-[30px] overflow-hidden bg-cover bg-center"
-                 style="background-image: linear-gradient(90deg, rgba(52, 78, 65, 1) 0%, rgba(0, 0, 0, 0.11) 100%), url('images/bg-cta-image.png');">
+                 style="background-image: linear-gradient(90deg, rgba(52, 78, 65, 1) 0%, rgba(0, 0, 0, 0.11) 100%), url('asset/fasilitas-5.jpeg');">
                 <!-- Content -->
                 <div class="text-center px-4 md:px-8 lg:px-12 max-w-[872px] mx-auto">
                     <!-- Judul -->
                     <h1
                             class="text-[#F3ECDC] text-[20px] sm:text-[32px] md:text-[32px] lg:text-[40px] font-semibold uppercase leading-normal font-['Open_Sans'] mb-4">
-                        Tempati Kos-Kosan Terbaik Sesuai Impian Anda di Barat Residence
+                        Tempati Kos-Kosan Terbaik Sesuai Impian Anda di Leci Mangga Residence
                     </h1>
                     <!-- Subjudul -->
                     <p class="text-[#F3ECDC] text-sm md:text-base font-light mb-8">
                         Tersedia banyak sekali kos-kosan terbaik yang siap Anda tempati
                     </p>
                     <!-- Tombol -->
-                    <a href="#"
+                    <a th:href="@{/pesan-sekarang?jenis=}"
                        class="inline-flex items-center justify-center px-8 py-3 md:px-10 md:py-4 rounded-[30px] text-sm md:text-base font-semibold uppercase tracking-wider bg-[#588157] text-[#F3ECDC] hover:bg-[#6A965F] transition">
                         Pesan Sekarang
                     </a>

@@ -201,8 +201,8 @@
                                 Fasilitas Kamar
                             </span>
                         </p>
-                        <h4 class="text-[#073937] font-opensans text-sm lg:text-[16px] font-semibold">
-                            Harga
+                        <h4 class="text-[#073937] font-opensans text-sm lg:text-[16px] font-semibold" th:text="'Harga (' + (${kamar.token} ? 'token)' : 'non-token)')">
+
                         </h4>
                         <div class="flex flex-col lg:flex-row lg:justify-between lg:items-center gap-2 pt-4 lg:pt-6 border-t border-[#EDE8DA]">
                             <div class="flex flex-col gap-1">
@@ -214,8 +214,14 @@
                                     </p>
                                 </div>
                             </div>
-                            <a th:href="@{/pesan-sekarang(jenis=${kamar.jenisKamar})}" class="bg-[#588157] text-white px-8 py-4 rounded-full text-sm font-semibold hover:bg-[#6A965F]">
+                            <a  th:href="@{/pesan-sekarang(jenis=${kamar.jenisKamar})}"
+                                th:if="${kamar.status}"
+                               class="bg-[#588157] text-white px-8 py-4 rounded-full text-sm font-semibold hover:bg-[#6A965F]">
                                 Pesan Sekarang
+                            </a>
+                            <a th:unless="${kamar.status}"
+                               class="bg-red-500 text-white px-8 py-4 rounded-full text-sm font-semibold hover:bg-red-200">
+                                Kamar Penuh
                             </a>
                         </div>
                     </div>
