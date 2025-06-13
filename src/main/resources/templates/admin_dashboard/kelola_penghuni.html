@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="id" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{admin_dashboard/base :: layout(~{::title}, ~{::#page-content})}">
+<head>
+    <title>Kelola Akun</title>
+</head>
+<body>
+<div id="page-content" class="max-w-[1200px] mx-auto p-8">
+
+    <div th:if="${successMessage}" x-data="{ show: true }" x-show="show" x-init="setTimeout(() => show = false, 3000)" class="fixed top-20 right-4 z-50 px-4 py-2 mb-2 text-white rounded-lg shadow-lg bg-green-500" th:text="${successMessage}"></div>
+
+    <div class="p-6 bg-white rounded-lg shadow-md">
+        <div class="flex justify-between items-center mb-4">
+            <button id="openModal" class="bg-[#527853] text-white px-4 py-2 rounded-lg shadow-md flex items-center gap-2"><i class="fas fa-plus-circle"></i> Tambah Akun Baru</button>
+            <form method="GET" th:action="@{/admin-dashboard/kelola-penghuni}" class="flex">
+                <input type="text" name="search" class="px-3 py-2 border rounded-lg" placeholder="Cari penghuni..." th:value="${query}">
+                <button type="submit" class="ml-2 bg-[#527853] text-white px-4 py-2 rounded-lg shadow-md">Cari</button>
+            </form>
+        </div>
+
+        <div class="overflow-x-auto mt-6">
+            <table class="w-full border-collapse text-left text-[14px]">
+                <thead>
+                <tr class="bg-gray-100">
+                    <th class="px-4 py-2 border">No</th>
+                    <th class="px-4 py-2 border">Nama Lengkap</th>
+                    <th class="px-4 py-2 border">No Handphone</th>
+                    <th class="px-4 py-2 border">Nomor Kamar</th>
+                    <th class="px-4 py-2 border text-center">Status Penghuni</th>
+                    <th class="px-4 py-2 border text-center font-semibold">Role</th>
+                    <th class="px-4 py-2 border text-center">Aksi</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="user, iterStat : ${penghuni}" th:class="${iterStat.odd} ? 'bg-gray-50' : ''">
+
+                    <td class="px-4 py-2 border" th:text="${iterStat.count}"></td>
+
+                    <td class="px-4 py-2 border" th:text="${user.username}"></td>
+
+                    <td class="px-4 py-2 border" th:text="${user.phoneNumber}"></td>
+
+                    <td class="px-4 py-2 border text-center">
+                        <span th:if="${user.ruangan}" th:text="${user.ruangan.nomorKamar} + ' (Lantai ' + ${user.ruangan.lantai} + ')'"></span>
+                        <span th:unless="${user.ruangan}" class="text-gray-500">N/A</span>
+                    </td>
+
+                    <td class="px-4 py-2 border font-bold text-center" th:classappend="${user.isPenghuni} ? 'text-green-600' : 'text-red-600'" th:text="${user.isPenghuni} ? 'Aktif' : 'Non-Aktif'"></td>
+
+                    <td class="px-4 py-2 border text-center" th:text="${user.role}"></td>
+
+                    <td class="px-4 py-2 border text-center">
+                        <a th:href="@{/admin-dashboard/edit-penghuni/{id}(id=${user.id})}" class="text-yellow-500 text-xl"><i class="fas fa-edit"></i></a>
+                        <a th:href="@{/admin-dashboard/hapus-penghuni/{id}(id=${user.id})}" class="text-red-500 text-xl ml-2" onclick="return confirm('Anda yakin ingin menghapus akun ini?')"><i class="fas fa-trash-alt"></i></a>
+                    </td>
+                </tr>
+
+                <tr th:if="${#lists.isEmpty(penghuni)}">
+                    <td colspan="7" class="px-4 py-2 border text-center text-gray-500">
+                        Tidak ada penghuni yang ditemukan.
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="modalTambahAkun" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+        <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
+            <h2 class="text-xl font-semibold mb-4">Tambah Akun Baru</h2>
+            <form method="POST" th:action="@{/admin-dashboard/tambah-penghuni}" th:object="${newUser}">
+                <div class="mb-3"><label for="add-username" class="block">Nama Lengkap *</label><input type="text" id="add-username" th:field="*{username}" required class="w-full px-3 py-2 border rounded-lg"></div>
+                <div class="mb-3"><label for="add-phoneNumber" class="block">No Handphone</label><input type="text" id="add-phoneNumber" th:field="*{phoneNumber}" class="w-full px-3 py-2 border rounded-lg"></div>
+                <div class="mb-3"><label class="flex items-center"><input type="checkbox" th:field="*{penghuni}" class="mr-2"> Penghuni Aktif?</label></div>
+                <div class="flex justify-end gap-2 mt-4">
+                    <button type="button" id="closeModal" class="px-4 py-2 bg-gray-400 text-white rounded-lg">Batal</button>
+                    <button type="submit" class="px-4 py-2 bg-green-600 text-white rounded-lg">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("openModal").addEventListener("click", () => document.getElementById("modalTambahAkun").classList.remove("hidden"));
+        document.getElementById("closeModal").addEventListener("click", () => document.getElementById("modalTambahAkun").classList.add("hidden"));
+    </script>
+</div>
+</body>
+</html>

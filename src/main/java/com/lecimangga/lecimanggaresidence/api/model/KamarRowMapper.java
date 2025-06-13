@@ -12,13 +12,13 @@ import java.util.stream.Collectors;
 public class KamarRowMapper implements RowMapper<Kamar> {
     public Kamar mapRow(ResultSet rs, int rowNum) throws SQLException {
         Kamar kamar = new Kamar();
-        kamar.setJenisKamar(rs.getString("jenisKamar"));
-        kamar.setImagePath(rs.getString("imagePath"));
+        kamar.setJenisKamar(rs.getString("jenis_kamar"));
+        kamar.setImagePath(rs.getString("image_path"));
         kamar.setStatus(rs.getBoolean("status"));
-        kamar.setDesc(rs.getString("desc"));
-        kamar.setMaxOrang(rs.getInt("maxOrang"));
+        kamar.setDesc(rs.getString("deskripsi"));
+        kamar.setMaxOrang(rs.getInt("max_orang"));
         kamar.setFasilitas(rs.getString("fasilitas"));
-        kamar.setToken(rs.getBoolean("token"));
+        kamar.setToken(rs.getBoolean("token_listrik"));
         String hargaString = rs.getString("Harga");
         if (hargaString != null && !hargaString.isEmpty()) {
             // Split by comma and convert to a List of Doubles

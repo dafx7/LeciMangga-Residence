@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="id" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{admin_dashboard/base :: layout(~{::title}, ~{::#page-content})}">
+<head>
+    <title>Edit Penghuni</title>
+</head>
+<body>
+<div id="page-content" class="max-w-[1200px] mx-auto p-8">
+    <div class="p-6 bg-white shadow-md rounded-lg max-w-2xl mx-auto">
+        <h2 class="text-xl font-semibold mb-4">Edit Penghuni</h2>
+        <form method="POST" th:action="@{/admin-dashboard/edit-penghuni/{id}(id=${user.id})}" th:object="${user}">
+            <div class="mb-3">
+                <label for="username" class="block">Nama</label>
+                <input type="text" id="username" th:field="*{username}" required class="w-full px-3 py-2 border rounded-lg">
+            </div>
+
+            <div class="mb-3">
+                <label for="phoneNumber" class="block">No Handphone</label>
+                <input type="text" id="phoneNumber" th:field="*{phoneNumber}" class="w-full px-3 py-2 border rounded-lg">
+            </div>
+
+            <div class="mb-3">
+                <label class="flex items-center">
+                    <input type="checkbox" th:field="*{penghuni}" class="mr-2"> Penghuni Aktif?
+                </label>
+            </div>
+
+            <div class="mb-3">
+                <label for="role" class="block">Role</label>
+                <select id="role" th:field="*{role}" class="w-full px-3 py-2 border rounded-lg">
+                    <option value="PENGHUNI">Penghuni</option>
+                    <option value="ADMIN">Admin</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="ruanganId" class="block">Nomor Kamar</label>
+                <select id="ruanganId" th:field="*{ruanganId}" class="w-full px-3 py-2 border rounded-lg">
+                    <option value="">-- Tidak Ada Kamar --</option>
+                    <th:block th:each="kamar : ${kamarList}">
+                        <option th:value="${kamar.id}" th:text="${kamar.nomorKamar} + ' (Lantai ' + ${kamar.lantai} + ')'"></option>
+                    </th:block>
+                </select>
+            </div>
+
+            <div class="flex justify-end gap-2 mt-6">
+                <a th:href="@{/admin-dashboard/kelola-penghuni}" class="px-4 py-2 bg-gray-400 text-white rounded-lg">Batal</a>
+                <button type="submit" class="px-4 py-2 bg-green-600 text-white rounded-lg">Simpan Perubahan</button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

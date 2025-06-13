@@ -84,25 +84,25 @@ public class ViewController {
         return "tipe-kamar";
     }
 
-    @GetMapping("/pesan-sekarang")
-    public String getPesanSekarang(@RequestParam(required = false) String jenis, Model model) {
-        Pemesanan pemesanan = new Pemesanan();
-        pemesanan.setJenis(jenis);
-        model.addAttribute("form", pemesanan);
-        model.addAttribute("jenis", jenis);
-        List<Kamar> listKamar = kamarRepository.getKamar();
-        int maxPenghuni = 1;
-        for (Kamar kamar : listKamar) {
-            if (kamar.getJenisKamar().equals(jenis)) {
-                maxPenghuni = kamar.getMaxOrang();
-                break;
-            }
-        }
-        model.addAttribute("maxPenghuni", maxPenghuni);
-        model.addAttribute("listKamar",listKamar);
-        return "pesan-sekarang";
-    }
+//    @GetMapping("/pesan-sekarang")
+//    public String getPesanSekarang(@RequestParam(required = false) String jenis, Model model) {
+//        Pemesanan pemesanan = new Pemesanan();
+//        pemesanan.setJenis(jenis);
+//        model.addAttribute("form", pemesanan);
+//        model.addAttribute("jenis", jenis);
+//        List<Kamar> listKamar = kamarRepository.getKamar();
+//        int maxPenghuni = 1;
+//        for (Kamar kamar : listKamar) {
+//            if (kamar.getJenisKamar().equals(jenis)) {
+//                maxPenghuni = kamar.getMaxOrang();
+//                break;
+//            }
+//        }
+//        model.addAttribute("maxPenghuni", maxPenghuni);
+//        model.addAttribute("listKamar",listKamar);
+//        return "pesan-sekarang";
+//    }
 
-    @GetMapping("/dashboard-penghuni")
-    public String showDashboard() {return "dashboard-penghuni";}
+    @GetMapping("/admin-dashboard")
+    public String showDashboard() {return "dashboard-admin";}
 }

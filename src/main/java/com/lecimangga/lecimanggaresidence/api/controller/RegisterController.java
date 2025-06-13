@@ -32,7 +32,7 @@ public class RegisterController {
         User user = new User();
         user.setUsername(username);
         user.setPassword(password);
-        user.setRole("customer");
+        user.setRole("PENGHUNI");
 
         Boolean isSaved = userRepository.saveUser(user);
         if (isSaved) {

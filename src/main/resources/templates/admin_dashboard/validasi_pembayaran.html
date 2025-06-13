@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="id" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{admin_dashboard/base :: layout(~{::title}, ~{::#page-content})}">
+<head>
+    <title>Validasi Pembayaran</title>
+</head>
+<body>
+<div id="page-content" class="max-w-[1120px] mx-auto p-8">
+
+    <div th:if="${successMessage}" x-data="{ show: true }" x-show="show" x-init="setTimeout(() => show = false, 3000)" class="fixed top-20 right-4 z-50 px-4 py-2 mb-2 text-white rounded-lg shadow-lg bg-green-500" th:text="${successMessage}"></div>
+
+    <div class="w-full bg-white shadow-lg rounded-[12px] p-8 mx-auto">
+        <h2 class="text-[14px] font-semibold text-[#6B6B6B] uppercase text-center">
+            Validasi Pembayaran
+        </h2>
+
+        <div class="flex justify-end items-center my-4">
+            <form method="GET" th:action="@{/admin-dashboard/validasi-pembayaran}" class="flex">
+                <input type="text" name="search" placeholder="Cari berdasarkan nama..."
+                       class="px-3 py-2 border rounded-lg" th:value="${search_query}">
+                <button type="submit" class="ml-2 bg-[#527853] text-white px-4 py-2 rounded-lg shadow-md">
+                    Cari
+                </button>
+            </form>
+        </div>
+
+        <div class="overflow-x-auto mt-6">
+            <table class="w-full border-collapse border border-gray-300 text-left text-[14px]">
+                <thead>
+                <tr class="bg-gray-100">
+                    <th class="border px-4 py-2">No</th>
+                    <th class="border px-4 py-2">Nama Penghuni</th>
+                    <th class="border px-4 py-2">Tipe Kamar</th>
+                    <th class="border px-4 py-2">Tanggal Bayar</th>
+                    <th class="border px-4 py-2">Durasi</th>
+                    <th class="border px-4 py-2">Nominal</th>
+                    <th class="border px-4 py-2 text-center">Bukti Transfer</th>
+                    <th class="border px-4 py-2 text-center">Aksi</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="transaksi, iterStat : ${transaksiList}">
+                    <td class="border px-4 py-2" th:text="${iterStat.count}"></td>
+                    <td class="border px-4 py-2" th:text="${transaksi.namaPenghuni}"></td>
+                    <td class="border px-4 py-2" th:text="${transaksi.tipeKamarNama}"></td>
+                    <td class="border px-4 py-2" th:text="${#temporals.format(transaksi.tanggalPembayaran, 'd MMMM yyyy')}"></td>
+                    <td class="border px-4 py-2" th:text="${transaksi.durasiBayar} + ' ' + (${transaksi.jenisDurasi == 'bulanan'} ? 'Bulan' : 'Tahun')"></td>
+                    <td class="border px-4 py-2" th:text="'Rp ' + ${#numbers.formatDecimal(transaksi.nominal, 0, 'POINT', 0, 'COMMA')}"></td>
+                    <td class="border px-4 py-2 text-center">
+                        <a th:if="${transaksi.buktiTransferUrl}" th:href="${transaksi.buktiTransferUrl}" target="_blank" class="text-blue-500 underline">Lihat Bukti</a>
+                        <span th:unless="${transaksi.buktiTransferUrl}" class="text-gray-500">-</span>
+                    </td>
+                    <td class="border px-4 py-2 text-center">
+                        <div th:if="${transaksi.statusValidasi == 'menunggu'}" class="flex gap-2 justify-center">
+                            <a th:href="@{/admin-dashboard/pembayaran/konfirmasi/{id}(id=${transaksi.id})}"
+                               class="px-3 py-1 text-white rounded border border-[#588157] bg-[#588157] hover:bg-[#6A965F] transition">
+                                Validasi
+                            </a>
+                            <a th:href="@{/admin-dashboard/pembayaran/tolak/{id}(id=${transaksi.id})}"
+                               class="px-3 py-1 text-white rounded border border-red-800 bg-red-800 hover:bg-red-900 transition">
+                                Tolak
+                            </a>
+                        </div>
+                        <span th:if="${transaksi.statusValidasi == 'diterima'}" class="text-green-600 font-semibold">Diterima</span>
+                        <span th:if="${transaksi.statusValidasi == 'ditolak'}" class="text-red-700 font-semibold">Ditolak</span>
+                    </td>
+                </tr>
+                <tr th:if="${#lists.isEmpty(transaksiList)}">
+                    <td colspan="8" class="border px-4 py-2 text-center text-gray-500">Tidak ada data pembayaran.</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

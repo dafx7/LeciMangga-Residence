@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="id" xmlns:th="http://www.thymeleaf.org" th:fragment="layout(title, content)">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:replace="${title}">Admin Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+<body class="bg-[#F8F5EE]">
+<div class="flex min-h-screen">
+    <aside id="sidebar" class="w-[240px] h-screen bg-[#222D32] flex flex-col font-[Poppins] transition-transform transform -translate-x-full lg:translate-x-0 fixed lg:relative z-50">
+<!--        <div class="bg-[#344E41] flex items-center justify-center h-[100px] shadow-md">-->
+<!--            <h1 class="text-[#F3ECDC] font-semibold text-[24px] leading-none ml-3">BARENS</h1>-->
+<!--        </div>-->
+        <div class="bg-[#344E41] flex items-center justify-start h-[100px] shadow-md">
+            <img th:src="@{/asset/admin_logo.png}" alt="logo lecimangga" class="h-16 ml-4">
+        </div>
+        <div class="flex items-center w-[240px] h-[60px] px-[23px] bg-[#192428] text-white font-medium text-[16px] leading-[20px]">ADMIN DASHBOARD</div>
+        <nav class="flex-1 flex flex-col justify-start mt-2 px-4">
+            <ul class="space-y-4">
+                <li>
+                    <a th:href="@{/admin-dashboard/kelola-penghuni}" class="flex items-center gap-3 text-white px-4 py-3 rounded-md text-[16px] font-normal leading-[20px]" th:classappend="${activePage == 'pengelolaanAkun'} ? 'bg-[#A3B18A]' : 'hover:bg-[#A3B18A]'">
+                        <i class="fas fa-users"></i> Pengelolaan Akun
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/admin-dashboard/pemesanan-kamar}"
+                       class="flex items-center gap-3 text-white px-4 py-3 rounded-md text-[16px] font-normal leading-[20px]"
+                       th:classappend="${activePage == 'pemesananKamar'} ? 'bg-[#A3B18A]' : 'hover:bg-[#A3B18A]'">
+                        <i class="fas fa-bed"></i> Pemesanan Kamar
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/admin-dashboard/validasi-pembayaran}"
+                       class="flex items-center gap-3 text-white px-4 py-3 rounded-md text-[16px] font-normal leading-[20px]"
+                       th:classappend="${activePage == 'validasiPembayaran'} ? 'bg-[#A3B18A]' : 'hover:bg-[#A3B18A]'">
+                        <i class="fas fa-money-check-alt"></i>
+                        <span class="ml-2">Validasi Pembayaran</span>
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/admin-dashboard/statistik}"
+                       class="flex items-center gap-3 text-white px-4 py-3 rounded-md text-[16px] font-normal leading-[20px]"
+                       th:classappend="${activePage == 'statistik'} ? 'bg-[#A3B18A]' : 'hover:bg-[#A3B18A]'">
+                        <i class="fas fa-chart-line"></i> Statistik
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/}" class="flex items-center gap-3 text-white px-4 py-3 hover:bg-red-600 rounded-md text-[16px] font-normal leading-[20px]"><i class="fas fa-sign-out-alt"></i> Keluar</a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main class="flex-1">
+        <header class="bg-[#345947] w-full h-[100px] flex items-center px-8 shadow-md relative">
+            <button id="menu-toggle" class="lg:hidden absolute left-4 text-white text-2xl focus:outline-none"><i class="fas fa-bars"></i></button>
+            <div class="flex items-center ml-12 lg:ml-0">
+                <div>
+                    <p class="text-white text-[16px] font-bold leading-[20px]">Dashboard Admin</p>
+                    <p class="text-[#B0B0B0] text-[16px] leading-[20px]">Kelola data penghuni, pemesanan, dan lainnya.</p>
+                </div>
+            </div>
+        </header>
+
+        <div th:replace="${content}">
+        </div>
+    </main>
+</div>
+<script>
+    const menuToggle = document.getElementById("menu-toggle");
+    const sidebar = document.getElementById("sidebar");
+    menuToggle.addEventListener("click", () => sidebar.classList.toggle("-translate-x-full"));
+</script>
+</body>
+</html>

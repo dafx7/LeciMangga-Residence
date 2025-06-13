@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="id" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{/admin_dashboard/base :: layout(~{::title}, ~{::#page-content})}">
+<head>
+    <title>Statistik Dashboard</title>
+</head>
+<body>
+<div id="page-content" class="max-w-[1120px] mx-auto p-8">
+    <div class="w-full p-6 bg-white rounded-[12px] shadow-[0px_0px_2px_rgba(0,0,0,0.25)]">
+        <h2 class="text-2xl font-semibold text-gray-800">Statistik Dashboard</h2>
+        <p class="text-gray-600">Pantau performa dan data kos secara real-time.</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+            <div class="flex flex-col justify-center items-center p-4 rounded-[12px] shadow-md bg-gradient-to-r from-[#588157] to-[#9CC59C]">
+                <p class="text-[14px] font-semibold uppercase text-white text-center">TOTAL PENGHUNI AKTIF</p>
+                <p class="text-[24px] font-semibold text-white text-center mt-2" id="total-penghuni-aktif">-</p>
+            </div>
+            <div class="flex flex-col justify-center items-center p-4 rounded-[12px] shadow-md bg-gradient-to-r from-[#2A9D8F] to-[#5BCDBF]">
+                <p class="text-[14px] font-semibold uppercase text-white text-center">PENGHUNI BARU (BULAN INI)</p>
+                <p class="text-[24px] font-semibold text-white text-center mt-2" id="total-penghuni-baru">-</p>
+            </div>
+            <div class="flex flex-col justify-center items-center p-4 rounded-[12px] shadow-md bg-gradient-to-r from-[#E76F51] to-[#F4A261]">
+                <p class="text-[14px] font-semibold uppercase text-white text-center">PENGHUNI KELUAR (BULAN INI)</p>
+                <p class="text-[24px] font-semibold text-white text-center mt-2" id="total-penghuni-keluar">-</p>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+            <div class="p-4 bg-white shadow-md rounded-md text-center"><h3 class="text-lg font-semibold">Okupansi Kamar</h3><canvas id="chartPemesanan"></canvas></div>
+            <div class="p-4 bg-white shadow-md rounded-md text-center"><h3 class="text-lg font-semibold">Status Pembayaran</h3><canvas id="chartPembayaran"></canvas></div>
+            <div class="p-4 bg-white shadow-md rounded-md text-center"><h3 class="text-lg font-semibold">Metode Pembayaran</h3><canvas id="chartMetodePembayaran"></canvas></div>
+        </div>
+
+        <div class="p-4 bg-white shadow-md rounded-md text-center mt-6">
+            <h3 class="text-lg font-semibold">Statistik Pendapatan</h3><canvas id="chartPendapatan"></canvas>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script th:inline="javascript">
+        let chartPemesanan, chartPembayaran, chartMetodePembayaran, chartPendapatan;
+
+        function fetchData() {
+            // Menggunakan Thymeleaf untuk mendapatkan URL API secara aman
+            const apiUrl = /*[[@{/api/statistik}]]*/ '/api/statistik';
+
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    // Update stat boxes
+                    document.getElementById("total-penghuni-aktif").innerText = data.totalPenghuniAktif + " orang";
+                    document.getElementById("total-penghuni-baru").innerText = data.totalPenghuniBaru + " orang";
+                    document.getElementById("total-penghuni-keluar").innerText = data.totalPenghuniKeluar + " orang";
+
+                    // Hancurkan chart lama sebelum membuat yang baru
+                    if (chartPemesanan) chartPemesanan.destroy();
+                    if (chartPembayaran) chartPembayaran.destroy();
+                    if (chartMetodePembayaran) chartMetodePembayaran.destroy();
+                    if (chartPendapatan) chartPendapatan.destroy();
+
+                    // Render Chart Okupansi Kamar
+                    chartPemesanan = new Chart(document.getElementById("chartPemesanan"), {
+                        type: 'doughnut', data: { labels: ["Terisi", "Kosong"], datasets: [{ data: [data.pemesananKamar.val1, data.pemesananKamar.val2], backgroundColor: ["#2A9D8F", "#E9C46A"] }] }
+                    });
+
+                    // Render Chart Status Pembayaran
+                    chartPembayaran = new Chart(document.getElementById("chartPembayaran"), {
+                        type: 'doughnut', data: { labels: ["Lunas", "Belum Lunas"], datasets: [{ data: [data.pembayaran.val1, data.pembayaran.val2], backgroundColor: ["#588157", "#F4A261"] }] }
+                    });
+
+                    // Render Chart Metode Pembayaran
+                    chartMetodePembayaran = new Chart(document.getElementById("chartMetodePembayaran"), {
+                        type: 'doughnut', data: { labels: ["Bank Transfer", "E-Wallet"], datasets: [{ data: [data.metodePembayaran.val1, data.metodePembayaran.val2], backgroundColor: ["#63A3F8", "#E76F51"] }] }
+                    });
+
+                    // Render Chart Pendapatan
+                    const monthLabels = Object.keys(data.pendapatan);
+                    const revenueValues = Object.values(data.pendapatan);
+                    chartPendapatan = new Chart(document.getElementById("chartPendapatan"), {
+                        type: 'bar', data: { labels: monthLabels, datasets: [{ label: 'Pendapatan (Rp)', data: revenueValues, backgroundColor: "#E9C46A" }] },
+                        options: { responsive: true, scales: { y: { beginAtZero: true } },  }
+                    });
+                })
+                .catch(error => console.error("Error fetching data:", error));
+        }
+
+        // Fetch data saat halaman pertama kali dimuat
+        document.addEventListener("DOMContentLoaded", fetchData);
+    </script>
+</div>
+</body>
+</html>
